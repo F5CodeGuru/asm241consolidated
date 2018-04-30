@@ -46,9 +46,9 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'ASM 341 Docs'
-copyright = u'2018, Chad Fazio'
-author = u'Chad Fazio'
+project = u'ASM 241 Docs'
+copyright = u'2018, Matt Burns'
+author = u'Matt Burns'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -102,7 +102,7 @@ html_static_path = ['_static']
 # -- Options for HTMLHelp output ------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'ASM341Docsdoc'
+htmlhelp_basename = 'ASM241Docsdoc'
 
 
 # -- Options for LaTeX output ---------------------------------------------
@@ -129,8 +129,8 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'ASM341Docs.tex', u'ASM 341 Docs Documentation',
-     u'Chad Fazio', 'manual'),
+    (master_doc, 'ASM241Docs.tex', u'ASM 241 Docs Documentation',
+     u'Matt Burns', 'manual'),
 ]
 
 
@@ -139,7 +139,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'asm341docs', u'ASM 341 Docs Documentation',
+    (master_doc, 'asm241docs', u'ASM 241 Docs Documentation',
      [author], 1)
 ]
 
