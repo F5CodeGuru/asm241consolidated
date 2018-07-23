@@ -58,14 +58,22 @@ Simulate Bot Activity and Review Logs
 
 #. On the client workstation, open a terminal app
 
-#. Run the following apache bench command:  ab -c 10 -n 10 -r http://10.1.10.145/
+#. Run the following apache bench command:  
+
+.. code-block:: bash
+
+        ab -c 10 -n 10 -r http://10.1.10.145/
 
 #. Review the Security Logs at Security > Event Logs > Bot Security > Requests
   * Did requests succeed or fail?
   * Why or why not?
 
 #. Run the attack using a custom user-agent:
-  * Ab -c 10 -n 10 -r -H “User-Agent: Agilitybot” http://10.1.10.145/
+
+.. code-block:: bash
+
+        ab -c 10 -n 10 -r -H “User-Agent: Agilitybot” http://10.1.10.145/
+
   * Review the request logs to determine if the attack was mitigated
   * Why did the attack succeed?
 
