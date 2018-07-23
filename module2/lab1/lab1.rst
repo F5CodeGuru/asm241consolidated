@@ -1,5 +1,6 @@
-Lab 2.1: User Session Tracking
-----------------------------------------
+Lab 2: WebScraping Protection
+--------------------------------------
 
-Task 1 - Explore the API using the TMOS Web Interface
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+This lab will show you how to configure protection against webscraping activity using a Firefox loop macro.
+
+
