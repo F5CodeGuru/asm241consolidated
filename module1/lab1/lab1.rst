@@ -4,13 +4,13 @@ Lab 1: Bot Protection
 This lab will simulate botnet activity against the Webgoat virtual server and show how to protect yourself from these types of threats.
 
 Connect to the lab environment
-------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #. From the jumpbox, launch Chrome, click the BIG-IP bookmark and login to TMUI. admin/f5DEMOs4u
 
 
 Configure a DOS Profile
------------------------
+~~~~~~~~~~~~~~~~~~~~~~~
 
 #. From the F5 UI go to Security > Dos Protection > DoS Profiles and click Create
 
@@ -28,7 +28,7 @@ Configure a DOS Profile
 
 
 Create a Bot Logging Profile
-----------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #. Go to Security > Logging Profiles and click Create
 
@@ -40,7 +40,7 @@ Create a Bot Logging Profile
 
 
 Assign DoS and Logging Profile to Virtual Server
-------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #. Go to Local Traffic > Virtual Servers > click on the 10.1.10.145 VIP
 
@@ -54,7 +54,7 @@ Assign DoS and Logging Profile to Virtual Server
 
 
 Simulate Bot Activity and Review Logs
--------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #. On the client workstation, open a terminal app
 
