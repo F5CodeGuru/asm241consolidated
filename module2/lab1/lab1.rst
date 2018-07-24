@@ -72,7 +72,7 @@ Create a security policy to prevent webscraping
 
 #. Edit the settings per the screenshot, click Save and then Apply Policy
 
-.. image:: images/bot_detection_settings.PNG
+.. image:: images/bot_detection_settings.png
 
 
 Create a DNS Resolver 
