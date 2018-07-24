@@ -1,8 +1,8 @@
-Module 1: Positive Security
+Module 1: Bot Defense
 ===================================================
 Expected time to complete: **1 hours**
 
-This first module covers the following topics:
+
 
 .. toctree::
    :maxdepth: 1
