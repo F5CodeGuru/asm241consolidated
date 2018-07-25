@@ -33,43 +33,43 @@ Test HTTP Redirection Behavior
 Edit the Security Policy
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-#. On the BIG-IP TMUI Go to Security > Application Security > Headers > Redirection Protection
+1. On the BIG-IP TMUI Go to Security > Application Security > Headers > Redirection Protection
 
-#. Verify that the “Current edited security policy” says “hackazon (blocking)”
+2. Verify that the “Current edited security policy” says “hackazon (blocking)”
 
 .. image:: images/httpredir.png
 
-#. The policy currently allows for redirection to any domain.
+3. The policy currently allows for redirection to any domain.
 
 .. note::
 	This is the default behavior for a fundamental security policy and should always be adjusted for your Application
 
-#. Add redirection protection to the policy by only allowing the site domain name. In the Domain Name field, type “hackazon.local” and click “Add”.
+4. Add redirection protection to the policy by only allowing the site domain name. In the Domain Name field, type “hackazon.local” and click “Add”.
 
-#. Click the checkbox next to “*” and click the Delete button.
+5. Click the checkbox next to “*” and click the Delete button.
 
 .. image:: images/httprediradd.png
 
-#. Click Save, then click Apply Policy and OK
+6. Click Save, then click Apply Policy and OK
 
 
  
 Test HTTP Redirection Protection
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#. Browse again to http://hackazon.local/user/login?return_url=http://webgoat.local/WebGoat/login
+1. Browse again to http://hackazon.local/user/login?return_url=http://webgoat.local/WebGoat/login
 
 .. note::
 	you may have to logout first and then go to the URL again.  Even though you were redirected to the other site, you were still logged in to Hackazon.
 
-#. Login again as ‘f5student’ with the proper password.
+2. Login again as ‘f5student’ with the proper password.
 
-#. You should get a block page.
+3. You should get a block page.
 
-..image:: images/blocked.png
+.. image:: images/blocked.png
 
-#. On the BIG-IP, go to Security, and click on Event Logs.
+4. On the BIG-IP, go to Security, and click on Event Logs.
 
-#. You should see the HTTP redirect event, “Illegal redirection attempt”, blocked and logged.
+5. You should see the HTTP redirect event, “Illegal redirection attempt”, blocked and logged.
 
-..image:: images/redir_illegal.png
+.. image:: images/redir_illegal.png
