@@ -65,8 +65,7 @@ Simulate Bot Activity and Review Logs
         ab -c 10 -n 10 -r http://10.1.10.145/
 
 3. Review the Security Logs at Security > Event Logs > Bot Security > Requests
-    Did requests succeed or fail?
-    Why or why not?
+Did requests succeed or fail? Why or why not?
 
 4. Run the attack using a custom user-agent:
 
@@ -74,8 +73,8 @@ Simulate Bot Activity and Review Logs
 
         ab -c 10 -n 10 -r -H “User-Agent: Agilitybot” http://10.1.10.145/
 
-    Review the request logs to determine if the attack was mitigated
-    Why did the attack succeed?
+Review the request logs to determine if the attack was mitigated
+Why did the attack succeed?
 
 5. Add a custom bot signature to your BotsLab profile
     Go to Security > Options > DoS Protection > Bot Signatures List and click Create
