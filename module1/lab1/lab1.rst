@@ -83,9 +83,10 @@ Add a custom bot signature to your BotsLab profile
 #. Go to Security > Options > DoS Protection > Bot Signatures List and click Create
      
 #. Name the signature Agilitybot and populate the following: 
-Category: Dos Tool
-Rule:  User-agent > contains > Agilitybot
-Risk: Medium
+
+- ``Category: Dos Tool``
+- ``Rule:  User-agent > contains > Agilitybot``
+- ``Risk: Medium``
 
 #. Click Create
 
