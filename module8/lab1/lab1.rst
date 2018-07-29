@@ -6,15 +6,15 @@ In this lab you will learn how to utilize ASM to mitigate the use of malicious X
 Connect to the lab environment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#. From the jumpbox, launch chrome, click the BIG-IP bookmark and login to TMUI. admin/f5DEMOs4u
+1. From the jumpbox, launch chrome, click the BIG-IP bookmark and login to TMUI. admin/f5DEMOs4u
 
 .. note::
 	While you can use firefox for connecting to the BIG-IP in this lab, you will be intercepting firefox traffic.
 	It may be easier to use two browsers instead of two tabs.
 
-#. From the jumpbox, launch firefox, which we will use to access WebGoat.
+2. From the jumpbox, launch firefox, which we will use to access WebGoat.
 
-#. From the jumpbox desktop, launch Burp Suite. 
+3. From the jumpbox desktop, launch Burp Suite. 
 
   - Select Temporary Projects and click Next.
   - Leave Defaults checked and click "Start Burp"
@@ -26,22 +26,24 @@ Connect to the lab environment
 An XXE Vulnerability
 ~~~~~~~~~~~~~~~~~~~~
 
-#. Login to WebGoat using firefox f5student/f5DEMOs4u!
+1. Login to WebGoat using firefox f5student/f5DEMOs4u!
 
-#. Select "Injection Flaws" and then select "XXE"
+2. Select "Injection Flaws" and then select "XXE"
 
-#. If XML or XML External Entities are new to you, then please start from the begging and read through parts 1 and 2 in the WebGoat Lesson.
+3. If XML or XML External Entities are new to you, then please start from the begging and read through parts 1 and 2 in the WebGoat Lesson.
 
-#. Under part 3, enter a comment to familiarize yourself with the application.
+4. Under part 3, enter a comment to familiarize yourself with the application.
+*The to complete the lesson, you will need to figure out how the list the contents of the root directory utilizing this submission form.*
 
-#. Enter the following statment in the field and click submit. What does this tell us?
+5. Enter the following statment in the field and click submit. What does this tell us?
 
-.. code block:: xml
-	&xxe;
+:: &xxe;
+
+6. So we know that an XML External Entity can be utilized with this form, but we will need to manipulate a request.
 
 
-Manipulate a Request
-~~~~~~~~~~~~~~~~~~~~
+Manipulating the Request
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 1. In Burp Suite turn Intercept back to on.
 
@@ -64,6 +66,7 @@ Manipulate a Request
 <text>abc&xxe;</text>
 </comment>
 
+*There should be an XML document on your desktop named xxe which you may paste from to save time, but please read and understand the request.*
 
 .. image:: images/editedreq.png
 
