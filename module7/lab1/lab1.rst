@@ -58,6 +58,6 @@ Test File Type Protection
 
 #. The Software Supply Chain .png graphic does not load, because it is blocked by the ASM Disallowed File Types setting blocking .png files.
 
-.. images:: images/blockedpng.png
+.. image:: images/blockedpng.png
 
 #. What other applications are there for this type of policy?
