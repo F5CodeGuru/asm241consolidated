@@ -81,7 +81,7 @@ Mitigate an XXE attack
 
 3. Make sure "ASM241" is selected as your Application Security Policy and that you have "Log Illegal Requests" as your Log Profile
 
-.. images:: images/ltmsettings.png
+.. image:: images/ltmsettings.png
 
 4. Go to Security > Application Security > Attack Signatures and make sure your current edited policy is ASM241.
 
@@ -105,8 +105,7 @@ Check your logs
 
 3. What is another way that ASM could be used to mitigate XXE injection?
 
-.. note::
-	Hint: Take a look at the Application Security > Content Profiles > XML Profiles
-	The Default profile is applied to all http and https requests
+*Hint: Take a look at the Application Security > Content Profiles > XML Profiles*
+*The Default profile is applied to all http and https requests*
 
 
