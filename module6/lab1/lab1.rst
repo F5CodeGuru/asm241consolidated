@@ -1,5 +1,93 @@
-Lab 3.1: Bot Protection
+Lab 6: Cookie Tampering Protection
 ----------------------------------------
 
-Task 1 - Explore the API using the TMOS Web Interface
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In this lab you will learn how ASM can learn about your application's cookies and prevent cookie tampering
+
+Connect to the Lab Environment
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+1. Open Chrome or Firefox and login to the BIG-IP TMUI as f5student/f5DEMOs4u!
+
+2. Open the hackazon application in firefox.
+
+	*Note you must use firefox for the hackazon application because only it is proxied to Burp*
+
+3. Open Burp Suite and make sure intercept is off under the proxy tab
+
+	*If Burp is already open from an earlier lab, you can use the same project*
+
+
+Examine the cookies
+~~~~~~~~~~~~~~~~~~~
+
+1. Turn intercept to on in Burp and in your hackazon tab, click on one or various links like "Get the Best Price"
+
+2. In Burp, examine the request.  Notice the cookie names and their values before forwarding.
+
+.. image:: images/cookiesample.png
+
+3. With intercept still set to on, click on the same link, but this time select the cookie value and edit it.
+
+.. image:: images/ccokiechange.png
+
+4. Notice the there is no change resulting response, but should we allow cookies to be manipulated?
+
+5. Turn intercept off
+
+
+Configure BIG-IP to learn and enforce cookies
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+1. In BIG-IP TMUI, go to Application Security > Policy Building > Learning and Blocking Settings
+
+2. Make sure the Current edited security policy is "hackazon_asm241" and select Advanced on the right side
+
+3. Down to Cookies and expand
+
+.. image:: images/cookiesettings.png
+
+4. Check the boxes for "Learn and enforce new unmodified cookies" as well as Learn, Alarm, and Block for "Modified domain cookies"
+
+5. Click Save and Apply the Policy
+
+	*Your policy is now configured to learn the cookies that are in use so that they may be enforced.*
+
+
+Traffic Learning
+~~~~~~~~~~~~~~~~
+
+1. Now that our policy is setup to learn about our application's cookies, we need to replicate the traffic from earlier for ASM.
+
+2. Open your tab with hackzon and click on the link for "Get the Best Price". You may want to click on a few other links to have ASM learn other cookies.
+
+3. Go back to BIG-IP and go to Application Security > Policy Building > Traffic Learning
+
+4. Make sure that the Current edited policy is "hackazon_asm241" and search for "Enforce Cookie"
+
+5. Select the entry for JSESSIONID and Accept the Suggection
+
+.. image:: images/suggestion.png
+
+	*Note you may accept the suggestion, but place the cookie in staging.  For this lab go ahead and enforce the suggestion*
+
+6. Go to Application Security > Headers > Cookie List and examine the new entries for Enforced Cookies
+
+.. images:: images/cookieenforce.png
+
+
+Trigger the Cookie Modification Protection
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+1. Turn intercept to on in Burp and in your hackazon tab, click on one or various links like "Get the Best Price"
+
+2. In Burp, examine the request.  Notice the JSESSIONID cookie and edit the value. Then Click Forward
+
+3. You should receive a block page from ASM
+
+.. image:: images/blocked.png
+
+5. Turn intercept off and go back to BIG-IP tab
+
+6. Got to Security > Event Logs and examine the illegal request
+
+.. image:: images/illegal.png
