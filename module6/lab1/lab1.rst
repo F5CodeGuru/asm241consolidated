@@ -28,7 +28,7 @@ Examine the cookies
 
 3. With intercept still set to on, click on the same link, but this time select the cookie value and edit it.
 
-.. image:: images/ccokiechange.png
+.. image:: images/cookiechange.png
 
 4. Notice the there is no change resulting response, but should we allow cookies to be manipulated?
 
@@ -72,7 +72,7 @@ Traffic Learning
 
 6. Go to Application Security > Headers > Cookie List and examine the new entries for Enforced Cookies
 
-.. images:: images/cookieenforce.png
+.. image:: images/cookieenforce.png
 
 
 Trigger the Cookie Modification Protection
@@ -88,6 +88,6 @@ Trigger the Cookie Modification Protection
 
 5. Turn intercept off and go back to BIG-IP tab
 
-6. Got to Security > Event Logs and examine the illegal request
+6. Go to Security > Event Logs and examine the illegal request
 
 .. image:: images/illegal.png
