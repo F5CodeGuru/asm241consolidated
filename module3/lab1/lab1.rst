@@ -11,8 +11,9 @@ Connect to the Lab Environment
 #. On the jumpbox, open terminal windows to the BIG-IP and the Kali Linux Client
 
 .. code block:: bash
-
 ssh admin@10.1.1.245
+
+.. code block:: bash
 ssh f5student@10.1.1.10
 
 .. note::
@@ -34,7 +35,7 @@ Examine the DoS Profile
 .. image:: images/irule.png
 
 *This is not a real world scenario.  Attacks would typically come from a wide range of IP addresses*
-*In this demo environment, we don ́t have dozens of good and bad source IPs available for clients and attackers.* 
+*In this demo environment, we do not have dozens of good and bad source IPs available for clients and attackers.* 
 *We simulate them by adding an iRule to the VS, which adds a randomized X-Forwarded-For header to each request*
 
 4. Go back to the Properties tab and notice that the http profile is also customized. It is configured to accept XFF for the iRule to function correctly.
@@ -61,7 +62,7 @@ Create Baseline traffic for the BIG-IP
 
 1. In your BIG-IP terminal session, change to the scripts directory and take a look at bash scripts that have been created.
 
-.. image:: imahes/bigscripts.png
+.. image:: images/bigscripts.png
 
 2. Most of these scripts are used to setup the lab environment or reset it for further tests.  Run the "show_BaDOS_learning.sh" script.
 
@@ -93,7 +94,7 @@ The "show_BaDOS_learning.sh" uses the admd daemon for stress-based DoS detection
 
 admd -s vs./Common/Hackazon_BaDOS_protected+/Common/Hackazon_BaDOS.info.learning
 
-*we give the parameters of the Virtual Server and the corresponding DOS profile to view the statistics.*
+*Given the parameters of the Virtual Server and the corresponding DOS profile, admd returns stats on traffic learning*
 *We want to wait until the first number in the brackets is 90 or above.  This represents the percentage confidence the system has in baseline traffic.*
 
 .. image:: images/percent90.png
@@ -132,7 +133,9 @@ Examine the Mitigation
 
 4. Notice that the attack Mitigation was Behavioral. This means a dynamic siganture was created and enforced to mitigate the attack.
 
-5. In each of your terminal windows type Ctrl+C to break the script and select the corresponding entry number to quit the program.
+5. How does this differ from Bot Detection?  Why should you use both mitigations usualy?
+
+6. In each of your terminal windows type Ctrl+C to break the script and select the corresponding entry number to quit the program.
 
 .. note::
 
