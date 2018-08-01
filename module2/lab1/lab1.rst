@@ -1,4 +1,4 @@
-Lab 3: Behavioral DOS Protection
+Lab 2: Behavioral DOS Protection
 ----------------------------------------
 
 In this lab you will run baseline tests as well as attacks against a Virtual Server to trigger Behavioral DoS Protection
