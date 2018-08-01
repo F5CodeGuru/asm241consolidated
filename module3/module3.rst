@@ -1,6 +1,8 @@
-Module 3: Behavioral DoS
+Module 3: WebScraping
 ===================================================
-Expected time to complete: **45 min**
+Expected time to complete: **15 min**
+
+
 
 .. toctree::
    :maxdepth: 1

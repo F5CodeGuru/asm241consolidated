@@ -1,116 +1,142 @@
-Lab 2: WebScraping Protection
---------------------------------------
+Lab 3: Behavioral DOS Protection
+----------------------------------------
 
-This lab will show you how to configure protection against webscraping activity using a Firefox loop macro.
+In this lab you will run baseline tests as well as attacks against a Virtual Server to trigger Behavioral DoS Protection
 
-Connect to the lab environment
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-#. From the jumpbox, launch chrome, click the BIG-IP bookmark and login to TMUI. admin/f5DEMOs4u
-
-#. From the jumpbox, launch firefox, which we will use to create the macro.
-
-
-Remove any existing security policy from the Webgoat Virtual Server
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-#. ON the BIG-IP TMUI, Go to Local Traffic > Virtual Servers > asm_vs
-
-#. Click the Security > Policies tab at the top 
-
-#. Change the Application Security Policy to “Disabled” 
-
-#. Change the Logging Profile to “Log Illegal Requests” and click update
-
-
-Connect to the Webgoat Application
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-#. Using Firefox, click on the shortcut for WEBGOAT login
-
-#. Note that you may use Chrome for BIG-IP access but you must use Firefox for the macro creation. 
-
-``http://10.1.10.145/WebGoat/login``
-
-
-Create a web scraping macro
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-#. Launch the iMacros sidebar by clicking on the icon at the top-right of Firefox
-
-#. Click the Rec menu, then click the Record button
-
-#. On the pop-up that asks to close all tabs, select No
-
-#. Click Stop to save the current macro (URI should be /Webgoat/login )
-
-#. Click the Play menu and set the Max to 12 and click Play Loop
-
-#. Did the pages load successfully?  
-
-
-Create a security policy to prevent webscraping
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-#. Log into the BigIP through the browser
-
-#. Click on Security > Application Security > Security Policies and Create 
-
-#. Select the Advanced view instead of Basic (default)
-
-#. Name the policy “webscraping” 
-
-#. Select “Rapid Deployment Policy” for the template
-
-#. Change Enforcement Mode to “Blocking”
-
-#. Select “asm_vs” for Virtual Server and click Create Policy (upper left)
-
-#. Once created, go to Application Security > Anomaly Detection > Web Scraping
-
-#. Click Bot Detection and select “Alarm and Block”.  This will bring up a menu below
-
-#. Edit the settings per the screenshot, click Save and then Apply Policy
-
-.. image:: images/bot_detection_settings.png
-
-
-Create a DNS Resolver 
-~~~~~~~~~~~~~~~~~~~~~
-
-.. note:: Required for effective anomaly detection
-
-#. You can either follow the link in the warning as you enable Web Scraping, or go to Network > DNS Resolvers > DNS Resolver List and Create
-
-#. Assign a name to the Resolver profile and click Finished
-
-
-Attempt to Scrape the Webgoat Login Page
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-#. Go back to your Webgoat tab in Firefox and re-run the macro you created
-
-#. Did the page hits load successfully?
-
-
-Review the Security Event Logs 
+Connect to the Lab Environment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#. Go to Security > Event Logs > Application > Requests
+#. On the jumpbox, use a browser to reach the BIG-IP and login as admin/f5DEMOs4u!
 
-#. You should see some current illegal requests, click on one and examine the details
+#. On the jumpbox, open terminal windows to the BIG-IP and the Kali Linux Client
 
-#. What caused ASM to block the request?
+.. code block:: bash
+ssh admin@10.1.1.245
 
-#. Now go to Security > Event Logs > Web Scraping Statistics
+.. code block:: bash
+ssh f5student@10.1.1.10
 
-#. Do you see any events?  
+.. note::
+
+The kali client will be used as the attacker machine for this lab. You may want to open multiple terminal windows to go through the steps in the lab.
 
 
-Reset the Virtual Server config for the next lab
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Examine the DoS Profile
+~~~~~~~~~~~~~~~~~~~~~~~
 
-#. Clear the app security event log
+1. In TMUI, go to Local traffic > Virtual Servers > Virtual Server List > Hackazon_BaDOS_protected
 
-#. Remove the webscraping security profile from the asm_vs virtual server
+2. Select the Security tab and then Policies.  Make sure that DoS Profile and Log Profil are setup as below.
 
+.. image:: images/hackazonprof.png
+
+3. Select the resources tab above.  Note the iRule that is applied.
+
+.. image:: images/irule.png
+
+*This is not a real world scenario.  Attacks would typically come from a wide range of IP addresses*
+*In this demo environment, we do not have dozens of good and bad source IPs available for clients and attackers.* 
+*We simulate them by adding an iRule to the VS, which adds a randomized X-Forwarded-For header to each request*
+
+4. Go back to the Properties tab and notice that the http profile is also customized. It is configured to accept XFF for the iRule to function correctly.
+
+5. Go to Security > DoS Protection > DoS Profiles > hackazon_BaDOS and select the Application Security tab.
+
+.. image:: images/dosprof.png
+
+6. Select Bot Signatures and select Edit and uncheck enabled.  Then click update.
+
+.. Note:: You do not have to Apply the Policy when editing a DoS Profile unblike typical changes under Application Security.
+
+7. Select Behavioral and Stress-based Detection and click edit under Behavioral Detection and Mitigation.
+
+.. image:: images/behave.png
+
+8. Notice that "Use approved signatures only" is unchecked. If checked, we would need to approve each dynamic signature.
+
+9. The Behavioral DoS profile is already applied and ready to go. Move on to the next section to begin analyzing traffic.
+
+
+Create Baseline traffic for the BIG-IP
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+1. In your BIG-IP terminal session, change to the scripts directory and take a look at bash scripts that have been created.
+
+.. image:: images/bigscripts.png
+
+2. Most of these scripts are used to setup the lab environment or reset it for further tests.  Run the "show_BaDOS_learning.sh" script.
+
+.. code block:: bash
+
+./show_BaDOS_learning.sh
+
+.. image images/percentzero.png
+
+3. In one of your Kali Linux terminal windows, examine your home director and run the "base_menu.sh" script
+
+.. code block:: bash
+
+./baseline_menu.sh
+
+4. Select either option 1 or option 2, but notice that option 3 quits the script.  You will use this later.
+
+.. image:: images/baseline.png
+
+5. In a second Kali terminal window, run the script again, but select the other option.
+
+*It does not matter which order is used here, and the results of baseline testing are not an exact science*
+
+6. Go back to your BIG-IP terminal window and take a look at the results of your earlier script
+
+The "show_BaDOS_learning.sh" uses the admd daemon for stress-based DoS detection and mitigation.
+
+.. code block:: bash
+
+admd -s vs./Common/Hackazon_BaDOS_protected+/Common/Hackazon_BaDOS.info.learning
+
+*Given the parameters of the Virtual Server and the corresponding DOS profile, admd returns stats on traffic learning*
+*We want to wait until the first number in the brackets is 90 or above.  This represents the percentage confidence the system has in baseline traffic.*
+
+.. image:: images/percent90.png
+
+7. Once you have reached 90% confidence, you may move on to the next task.  This may take a few minutes or more.
+
+
+Launch the Attack
+~~~~~~~~~~~~~~~~~
+
+1. Open another teminal window to Kali Linux and login as f5student
+
+2. In your home directory, you will find another script named "AB_DOS.sh".  Run this script
+
+.. code block:: bash
+
+./AB_DOS.sh
+
+.. image:: images/attackmenu.png
+
+3. Select 1 for "Attack start - similarity" and hit enter.  Notice that entering 4 ends the script.  You will use this later to end the attack.
+
+
+Examine the Mitigation
+~~~~~~~~~~~~~~~~~~~~~~
+
+1. On TMUI, go to Security > DoS Protection > Signatures and click on the bar for Dynamic.
+
+.. image:: images/dynamic.png
+
+2. Notice that the signature was enforced immediately. because we did not select to approve signatures in the Behavioral DOS policy.
+
+3. Go to Security > Event Logs > DoS > Application Events
+
+.. image:: images/dosevent.png
+
+4. Notice that the attack Mitigation was Behavioral. This means a dynamic siganture was created and enforced to mitigate the attack.
+
+5. How does this differ from Bot Detection?  Why should you use both mitigations usualy?
+
+6. In each of your terminal windows type Ctrl+C to break the script and select the corresponding entry number to quit the program.
+
+.. note::
+
+*Do not move on without ending these attack and baseline scripts, as it may have an effect on the rest of the labs* 
