@@ -6,7 +6,7 @@ This lab will simulate botnet activity against the Webgoat virtual server and sh
 Connect to the lab environment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#. From the jumpbox, launch Chrome, click the BIG-IP bookmark and login to TMUI. admin/f5DEMOs4u
+#. From the jumpbox, launch Chrome or firefox, click the BIG-IP bookmark and login to TMUI. admin/f5DEMOs4u
 
 
 Configure a DOS Profile
@@ -26,23 +26,27 @@ Configure a DOS Profile
 
 #. Click Update to save the profile changes.
 
+.. image:: images/dosprofile.png
+
 
 Create a Bot Logging Profile
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#. Go to Security > Logging Profiles and click Create
+#. Go to Security > Event Logs > Logging Profiles and click Create
 
 #. Name the profile BotsLogger and check Bot Defense
 
 #. Check all the boxes and leave remote publisher to None 
 
-#. Click Update to save the profile
+#. Click Finished to save the profile
+
+.. image:: images/doslog.png
 
 
 Assign DoS and Logging Profile to Virtual Server
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#. Go to Local Traffic > Virtual Servers > click on the 10.1.10.145 VIP
+#. Go to Local Traffic > Virtual Servers > click on asm_vs Virtual
 
 #. At the top, click on the Security Tab > Policies 
 
@@ -51,6 +55,8 @@ Assign DoS and Logging Profile to Virtual Server
 #. For Log Profile, select BotsLogger
 
 #. Click Update to save changes
+
+.. image:: images/assign.png
 
 
 Simulate Bot Activity and Review Logs
@@ -90,4 +96,8 @@ Add a custom bot signature to your BotsLab profile
 
 3. Click Create
 
+.. image:: images/signature.png
+
 4. Rerun the attack from step 4 and review the request logs. Was the attack mitigated?
+
+5. Remove the DoS Protection Profile and the BotsLogger profile from the asm_vs before moving on.
