@@ -12,9 +12,22 @@ Connect to the Lab Environment
 
 	*Note you must use firefox for the hackazon application because only it is proxied to Burp*
 
-3. Open Burp Suite and make sure intercept is off under the proxy tab
+3. In firefox go to the right hand side icon and select "Preferences".  Then select Advanced and Settings under connection.
 
-	*If Burp is already open from an earlier lab, you can use the same project*
+.. image:: images/settings.png
+
+4. Set your proxy settings to manual as shown in the screenshot.
+
+.. image:: images/proxy.png
+
+5. From the jumpbox desktop, launch Burp Suite. 
+
+  - Select Temporary Projects and click Next.
+  - Leave Defaults checked and click "Start Burp"
+  - Select the "Proxy" tab and then turn intercept off.
+
+.. image:: images/proxyoff.png
+
 
 
 Examine the cookies
@@ -91,3 +104,5 @@ Trigger the Cookie Modification Protection
 6. Go to Security > Event Logs and examine the illegal request
 
 .. image:: images/illegal.png
+
+7. Turn intercept back to off and close Burp Suite.  Then return to your firefox settings and change the proxy settings back to "No Proxy"

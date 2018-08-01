@@ -14,7 +14,15 @@ Connect to the lab environment
 
 2. From the jumpbox, launch firefox, which we will use to access WebGoat.
 
-3. From the jumpbox desktop, launch Burp Suite. 
+3. In firefox go to the right hand side icon and select "Preferences".  Then select Advanced and Settings under connection.
+
+.. image:: images/settings.png
+
+4. Set your proxy settings to manual as shown in the screenshot.
+
+.. image:: images/proxy.png
+
+5. From the jumpbox desktop, launch Burp Suite. 
 
   - Select Temporary Projects and click Next.
   - Leave Defaults checked and click "Start Burp"
@@ -111,4 +119,4 @@ Check your logs
 *Hint: Take a look at the Application Security > Content Profiles > XML Profiles*
 *The Default profile is applied to all http and https requests*
 
-
+4. Turn intercept back to off and close Burp Suite.  Then return to your firefox settings and change the proxy settings back to "No Proxy"
