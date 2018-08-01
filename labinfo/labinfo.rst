@@ -9,8 +9,8 @@ All pre-built environments implement the Lab Topology shown below.  Please
 review the topology first, then find the section matching the lab environment
 you are using for connection instructions.
 
-Environment
------------
+Components and Tools
+~~~~~~~~~~~~~~~~~~~~
 
 Linux Client (Client01):
 
@@ -33,23 +33,19 @@ LAMP Server (LAMPv4):
  * `Hackazon <https://github.com/rapid7/hackazon>`_ - deliberately insecure application
 
 BIG-IP (bigip01):
+
  * Local Traffic Manager
  * Application Security Manager / Advanced WAF
 
-.. _lab-topology:
+
 
 Lab Topology
-------------
+~~~~~~~~~~~~
 
 The network topology implemented for this lab is very simple, since the
 focus of the lab is Control Plane programmability rather than Data Plane
 traffic flow we can keep the data plane fairly simple. The following
 components have been included in your lab environment:
-
--  1 x Ubuntu Linux 16.04 client - aptly named: client01
--  1 x F5 BIG-IP VE (v13.1.0.5) running ASM and LTM - aptly named: bigip01
--  1 x Ubuntu Linux 16.04 server - aptly named: server01
-
 
 The following table lists VLANS, IP Addresses and Credentials for all
 components:
