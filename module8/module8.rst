@@ -1,6 +1,6 @@
-Module 3: Advanced WAF
+Module 8: External XML Entities
 ===================================================
-Expected time to complete: **1 hours**
+Expected time to complete: **20 min**
 
 .. toctree::
    :maxdepth: 1

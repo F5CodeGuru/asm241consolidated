@@ -1,6 +1,6 @@
-Module 3: Advanced WAF
+Module 7: Vulnerable Web Components
 ===================================================
-Expected time to complete: **1 hours**
+Expected time to complete: **15 min**
 
 .. toctree::
    :maxdepth: 1

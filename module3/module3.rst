@@ -1,6 +1,6 @@
-Module 3: Advanced WAF
+Module 3: Behavioral DoS
 ===================================================
-Expected time to complete: **1 hours**
+Expected time to complete: **45 min**
 
 .. toctree::
    :maxdepth: 1

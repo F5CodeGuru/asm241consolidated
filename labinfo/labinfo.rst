@@ -30,15 +30,11 @@ Linux Server (Server01):
 
 LAMP Server (LAMPv4):
 
- * `Hackazon <https://github.com/rapid7/hackazon`_ - deliberately insecure application
+ * `Hackazon <https://github.com/rapid7/hackazon>`_ - deliberately insecure application
 
 BIG-IP (bigip01):
-
-* Provisioned Software Modules
- 
  * Local Traffic Manager
- * Application Security Manager
-
+ * Application Security Manager / Advanced WAF
 
 .. _lab-topology:
 
@@ -52,19 +48,14 @@ components have been included in your lab environment:
 
 -  1 x Ubuntu Linux 16.04 client - aptly named: client01
 -  1 x F5 BIG-IP VE (v13.1.0.5) running ASM and LTM - aptly named: bigip01
--  1 x Ubuntu Linux 16.04 server - aptly named: server01 
+-  1 x Ubuntu Linux 16.04 server - aptly named: server01
 
-.. nwdiag:: labtopology.diag
-   :width: 800
-   :caption: Lab Topology
-   :name: lab-topology-diagram
-   :scale: 110%
 
 The following table lists VLANS, IP Addresses and Credentials for all
 components:
 
 .. list-table::
-   :widths: 15 15 15 15 15 
+   :widths: 15 15 15 15 20 
    :header-rows: 1
    :stub-columns: 1
 

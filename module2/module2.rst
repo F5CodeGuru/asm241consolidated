@@ -1,6 +1,6 @@
 Module 2: WebScraping
 ===================================================
-Expected time to complete: **1 hours**
+Expected time to complete: **20 min**
 
 
 

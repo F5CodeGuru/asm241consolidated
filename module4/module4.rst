@@ -1,6 +1,6 @@
-Module 3: Advanced WAF
+Module 4: CSRF
 ===================================================
-Expected time to complete: **1 hours**
+Expected time to complete: **15 min**
 
 .. toctree::
    :maxdepth: 1
