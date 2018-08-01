@@ -78,7 +78,7 @@ Create Baseline traffic for the BIG-IP
 
 ./baseline_menu.sh
 
-4. Select either option 1 or option 2
+4. Select either option 1 or option 2, but notice that option 3 quits the script.  You will use this later.
 
 .. image:: images/baseline.png
 
@@ -115,7 +115,7 @@ Launch the Attack
 
 .. image:: images/attackmenu.png
 
-3. Select 1 for "Attack start - similarity" and hit enter.  Notice that entering 4 ends the script.  You will use this later to endthe attack.
+3. Select 1 for "Attack start - similarity" and hit enter.  Notice that entering 4 ends the script.  You will use this later to end the attack.
 
 
 Examine the Mitigation
