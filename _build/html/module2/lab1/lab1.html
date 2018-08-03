@@ -261,45 +261,77 @@
 <div class="section" id="connect-to-the-lab-environment">
 <h2>Connect to the Lab Environment<a class="headerlink" href="#connect-to-the-lab-environment" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>On the jumpbox, use a browser to reach the BIG-IP and login as admin/f5DEMOs4u!</li>
-<li>On the jumpbox, open terminal windows to the BIG-IP and the Kali Linux Client</li>
+<li>On the jumphost, use a browser to reach the BIG-IP and login as admin/password</li>
+<li>On the jumphost, open three terminals, one to the BIG-IP and two to the Kali Linux Client, using the password provided by the instructor.</li>
 </ol>
-<p>ssh <a class="reference external" href="mailto:admin&#37;&#52;&#48;10&#46;1&#46;1&#46;245">admin<span>&#64;</span>10<span>&#46;</span>1<span>&#46;</span>1<span>&#46;</span>245</a></p>
-<p>ssh <a class="reference external" href="mailto:f5student&#37;&#52;&#48;10&#46;1&#46;1&#46;10">f5student<span>&#64;</span>10<span>&#46;</span>1<span>&#46;</span>1<span>&#46;</span>10</a></p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh admin@10.1.1.245 <span class="o">(</span>bigip01<span class="o">)</span>
+ssh f5student@10.1.1.10 <span class="o">(</span>Kali<span class="o">)</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <p>The kali client will be used as the attacker machine for this lab. You may want to open multiple terminal windows to go through the steps in the lab.</p>
 </div>
 <div class="section" id="examine-the-dos-profile">
 <h2>Examine the DoS Profile<a class="headerlink" href="#examine-the-dos-profile" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>In TMUI, go to Local traffic &gt; Virtual Servers &gt; Virtual Server List &gt; Hackazon_BaDOS_protected</li>
-<li>Select the Security tab and then Policies.  Make sure that DoS Profile and Log Profil are setup as below.</li>
+<li>Select the Security tab and then Policies.  Make sure that DoS Profile and Log Profile are set up as below.</li>
 </ol>
-<img alt="../../_images/hackazonprof.png" src="../../_images/hackazonprof.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/hackazonprof.png"><img alt="../../_images/hackazonprof.png" src="../../_images/hackazonprof.png" style="width: 800px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <ol class="arabic simple" start="3">
-<li>Select the resources tab above.  Note the iRule that is applied.</li>
+<li>Select the resources tab above. Note the iRule that is applied.</li>
 </ol>
-<img alt="../../_images/irule.png" src="../../_images/irule.png" />
-<p><em>This is not a real world scenario.  Attacks would typically come from a wide range of IP addresses</em>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/irule.png"><img alt="../../_images/irule.png" src="../../_images/irule.png" style="width: 800px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p><em>This is not a real world scenario. Attacks would typically come from a wide range of IP addresses.</em>
 <em>In this demo environment, we do not have dozens of good and bad source IPs available for clients and attackers.</em>
-<em>We simulate them by adding an iRule to the VS, which adds a randomized X-Forwarded-For header to each request</em></p>
+<em>We simulate them by adding an iRule to the VS, which adds a randomized X-Forwarded-For header to each request.</em></p>
 <ol class="arabic simple" start="4">
 <li>Go back to the Properties tab and notice that the http profile is also customized. It is configured to accept XFF for the iRule to function correctly.</li>
 <li>Go to Security &gt; DoS Protection &gt; DoS Profiles &gt; hackazon_BaDOS and select the Application Security tab.</li>
 </ol>
-<img alt="../../_images/dosprof.png" src="../../_images/dosprof.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/dosprof.png"><img alt="../../_images/dosprof.png" src="../../_images/dosprof.png" style="width: 800px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <ol class="arabic simple" start="6">
-<li>Select Bot Signatures and select Edit and uncheck enabled.  Then click update.</li>
+<li>Select Bot Signatures and select Edit and uncheck enabled. Then click Update.</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">You do not have to Apply the Policy when editing a DoS Profile unblike typical changes under Application Security.</p>
+<p class="last">You do not have to Apply the Policy when editing a DoS Profile unlike typical changes under Application Security.</p>
 </div>
 <ol class="arabic simple" start="7">
-<li>Select Behavioral and Stress-based Detection and click edit under Behavioral Detection and Mitigation.</li>
+<li>Select Behavioral and Stress-based Detection and click Edit under Behavioral Detection and Mitigation.</li>
 </ol>
-<img alt="../../_images/behave.png" src="../../_images/behave.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/behave.png"><img alt="../../_images/behave.png" src="../../_images/behave.png" style="width: 600px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <ol class="arabic simple" start="8">
-<li>Notice that “Use approved signatures only” is unchecked. If checked, we would need to approve each dynamic signature.</li>
+<li>Notice that “Use approved signatures only” is unchecked. If checked, we would need to approve each dynamic signature. No need to edit, click close.</li>
 <li>The Behavioral DoS profile is already applied and ready to go. Move on to the next section to begin analyzing traffic.</li>
 </ol>
 </div>
@@ -308,31 +340,78 @@
 <ol class="arabic simple">
 <li>In your BIG-IP terminal session, change to the scripts directory and take a look at bash scripts that have been created.</li>
 </ol>
-<img alt="../../_images/bigscripts.png" src="../../_images/bigscripts.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/bigscripts.png"><img alt="../../_images/bigscripts.png" src="../../_images/bigscripts.png" style="width: 600px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <ol class="arabic simple" start="2">
-<li>Most of these scripts are used to setup the lab environment or reset it for further tests.  Run the “show_BaDOS_learning.sh” script.</li>
+<li>Most of these scripts are used to setup the lab environment or reset it for further tests.  Run the “show_BaDOS_learning.sh” script, the output should look similar to the below.</li>
 </ol>
-<p>./show_BaDOS_learning.sh</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./show_BaDOS_learning.sh
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/percentzero.png"><img alt="../../_images/percentzero.png" src="../../_images/percentzero.png" style="width: 600px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <ol class="arabic simple" start="3">
-<li>In one of your Kali Linux terminal windows, examine your home director and run the “base_menu.sh” script</li>
+<li>In one of your Kali Linux terminal windows, examine your home directory and run the “base_menu.sh” script.</li>
 </ol>
-<p>./baseline_menu.sh</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./baseline_menu.sh
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <ol class="arabic simple" start="4">
 <li>Select either option 1 or option 2, but notice that option 3 quits the script.  You will use this later.</li>
 </ol>
-<img alt="../../_images/baseline.png" src="../../_images/baseline.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/baseline.png"><img alt="../../_images/baseline.png" src="../../_images/baseline.png" style="width: 600px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <ol class="arabic simple" start="5">
 <li>In a second Kali terminal window, run the script again, but select the other option.</li>
 </ol>
 <p><em>It does not matter which order is used here, and the results of baseline testing are not an exact science</em></p>
 <ol class="arabic simple" start="6">
-<li>Go back to your BIG-IP terminal window and take a look at the results of your earlier script</li>
+<li>Go back to your BIG-IP terminal window and take a look at the results of your earlier script.</li>
 </ol>
-<p>The “show_BaDOS_learning.sh” uses the admd daemon for stress-based DoS detection and mitigation.</p>
-<p>admd -s vs./Common/Hackazon_BaDOS_protected+/Common/Hackazon_BaDOS.info.learning</p>
-<p><em>Given the parameters of the Virtual Server and the corresponding DOS profile, admd returns stats on traffic learning</em>
-<em>We want to wait until the first number in the brackets is 90 or above.  This represents the percentage confidence the system has in baseline traffic.</em></p>
-<img alt="../../_images/percent90.png" src="../../_images/percent90.png" />
+<p>The “show_BaDOS_learning.sh” uses the admd daemon for stress-based DoS detection and mitigation. An example of the admd command is below and does not need to tbe executed.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>admd -s vs./Common/Hackazon_BaDOS_protected+/Common/Hackazon_BaDOS.info.learning
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p><em>Given the parameters of the Virtual Server and the corresponding DOS profile, admd returns stats on traffic learning.</em>
+<em>We want to wait until the first number in the brackets is 90 or above.  This represents the percentage confidence the system has in baseline traffic.</em>
+<em>Below is output that has reached 88% then 92%.</em></p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/percent90.png"><img alt="../../_images/percent90.png" src="../../_images/percent90.png" style="width: 600px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <ol class="arabic simple" start="7">
 <li>Once you have reached 90% confidence, you may move on to the next task.  This may take a few minutes or more.</li>
 </ol>
@@ -340,11 +419,22 @@
 <div class="section" id="launch-the-attack">
 <h2>Launch the Attack<a class="headerlink" href="#launch-the-attack" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Open another teminal window to Kali Linux and login as f5student</li>
-<li>In your home directory, you will find another script named “AB_DOS.sh”.  Run this script</li>
+<li>Open another terminal window to Kali Linux and login as f5student.</li>
+<li>In your home directory, you will find another script named “AB_DOS.sh”.  Run this script.</li>
 </ol>
-<p>./AB_DOS.sh</p>
-<img alt="../../_images/attackmenu.png" src="../../_images/attackmenu.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./AB_DOS.sh
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/attackmenu.png"><img alt="../../_images/attackmenu.png" src="../../_images/attackmenu.png" style="width: 600px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <ol class="arabic simple" start="3">
 <li>Select 1 for “Attack start - similarity” and hit enter.  Notice that entering 4 ends the script.  You will use this later to end the attack.</li>
 </ol>
@@ -352,20 +442,35 @@
 <div class="section" id="examine-the-mitigation">
 <h2>Examine the Mitigation<a class="headerlink" href="#examine-the-mitigation" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>On TMUI, go to Security &gt; DoS Protection &gt; Signatures and click on the bar for Dynamic.</li>
+<li>On TMUI, go to Security &gt; DoS Protection &gt; Signatures and click on the bar for Dynamic. You should see an entry similar to the below (this may not show up right away, revisit the page until an entry appears).</li>
 </ol>
-<img alt="../../_images/dynamic.png" src="../../_images/dynamic.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/dynamic.png"><img alt="../../_images/dynamic.png" src="../../_images/dynamic.png" style="width: 600px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <ol class="arabic simple" start="2">
-<li>Notice that the signature was enforced immediately. because we did not select to approve signatures in the Behavioral DOS policy.</li>
+<li>Notice that the “Deployement State” is Mitigate. This is because the signature was enforced immediately, since we did not select to approve signatures in the Behavioral DOS policy.</li>
 <li>Go to Security &gt; Event Logs &gt; DoS &gt; Application Events</li>
 </ol>
-<img alt="../../_images/dosevent.png" src="../../_images/dosevent.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/dosevent.png"><img alt="../../_images/dosevent.png" src="../../_images/dosevent.png" style="width: 600px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <ol class="arabic simple" start="4">
-<li>Notice that the attack Mitigation was Behavioral. This means a dynamic siganture was created and enforced to mitigate the attack.</li>
-<li>How does this differ from Bot Detection?  Why should you use both mitigations usualy?</li>
-<li>In each of your terminal windows type Ctrl+C to break the script and select the corresponding entry number to quit the program.</li>
+<li>Notice that the attack Mitigation was Behavioral. This means a dynamic signature was created and enforced to mitigate the attack.</li>
+<li>How does this differ from Bot Detection? Why should you use both mitigations usually?</li>
+<li>In each of your terminal windows type Ctrl+C to terminate the scripts. The AB_DOS.sh script will require you to enter 4 to quit after pressing Ctrl+C..</li>
 </ol>
-<p><em>Do not move on without ending these attack and baseline scripts, as it may have an effect on the rest of the labs</em></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><em>Do not move on without ending these attack and baseline scripts, as they may have an effect on the rest of the labs</em></p>
+</div>
 </div>
 </div>
 

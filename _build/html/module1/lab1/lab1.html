@@ -262,7 +262,7 @@
 <div class="section" id="connect-to-the-lab-environment">
 <h2>Connect to the lab environment<a class="headerlink" href="#connect-to-the-lab-environment" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>From the jumpbox, launch Chrome or firefox, click the BIG-IP bookmark and login to TMUI. admin/f5DEMOs4u</li>
+<li>From the jumphost (client01), launch Chrome or firefox, click the BIG-IP bookmark and login to TMUI. admin/password</li>
 </ol>
 </div>
 <div class="section" id="configure-a-dos-profile">
@@ -283,7 +283,7 @@
 <ol class="arabic simple">
 <li>Go to Security &gt; Event Logs &gt; Logging Profiles and click Create</li>
 <li>Name the profile BotsLogger and check Bot Defense</li>
-<li>Check all the boxes and leave remote publisher to None</li>
+<li>Check all the boxes under “Request Log” and leave remote publisher to None</li>
 <li>Click Finished to save the profile</li>
 </ol>
 <img alt="../../_images/doslog.png" src="../../_images/doslog.png" />
@@ -294,7 +294,7 @@
 <li>Go to Local Traffic &gt; Virtual Servers &gt; click on asm_vs Virtual</li>
 <li>At the top, click on the Security Tab &gt; Policies</li>
 <li>For DoS Protection Profile, select BotsLab</li>
-<li>For Log Profile, select BotsLogger</li>
+<li>For Log Profile, select “BotsLogger” to add it to list of selected logging profiles, leaving “Log Illegal Requests”</li>
 <li>Click Update to save changes</li>
 </ol>
 <img alt="../../_images/assign.png" src="../../_images/assign.png" />
@@ -302,22 +302,34 @@
 <div class="section" id="simulate-bot-activity-and-review-logs">
 <h2>Simulate Bot Activity and Review Logs<a class="headerlink" href="#simulate-bot-activity-and-review-logs" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>On the client workstation, open a terminal app</li>
+<li>On the client01 jumphost, open a terminal app to get a cli prompt</li>
 <li>Run the following apache bench command:</li>
 </ol>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ab -c <span class="m">10</span> -n <span class="m">10</span> -r http://10.1.10.145/
 </pre></div>
 </div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <ol class="arabic simple" start="3">
-<li>Review the Security Logs at Security &gt; Event Logs &gt; Bot Security &gt; Requests</li>
+<li>Review the Security Logs at Security &gt; Event Logs &gt; Bot Defense &gt; Requests</li>
 <li>Did requests succeed or fail? Why or why not?</li>
-<li>Run the attack using a custom user-agent:</li>
+<li>Run the attack using a custom user-agent (if you copy and paste the command below, be careful of the double-quote conversion):</li>
 </ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ab -c <span class="m">10</span> -n <span class="m">10</span> -r -H “User-Agent: Agilitybot” http://10.1.10.145/
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ab -c <span class="m">10</span> -n <span class="m">10</span> -r -H <span class="s2">&quot;User-Agent: Agilitybot&quot;</span> http://10.1.10.145/
 </pre></div>
 </div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <ol class="arabic simple" start="6">
-<li>Review the request logs to determine if the attack was mitigated. Why did the attack succeed?</li>
+<li>Review the Bot Defense request logs again to determine if the attack was mitigated. Why did the attack succeed?</li>
 </ol>
 </div>
 <div class="section" id="add-a-custom-bot-signature-to-your-botslab-profile">
@@ -336,9 +348,24 @@
 </ol>
 <img alt="../../_images/signature.png" src="../../_images/signature.png" />
 <ol class="arabic simple" start="4">
-<li>Rerun the attack from step 4 and review the request logs. Was the attack mitigated?</li>
-<li>Remove the DoS Protection Profile and the BotsLogger profile from the asm_vs before moving on.</li>
+<li>Rerun the attack from step 5 of “Simulate Bot Activity and Review Logs” and review the request logs. Was the attack mitigated?</li>
 </ol>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ab -c <span class="m">10</span> -n <span class="m">10</span> -r -H <span class="s2">&quot;User-Agent: Agilitybot&quot;</span> http://10.1.10.145/
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ol class="arabic simple" start="5">
+<li>Remove the DoS Protection Profile and the BotsLogger profile from the asm_vs, as shown below, before moving on.</li>
+</ol>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/botdeflogrequests.png"><img alt="../../_images/botdeflogrequests.png" src="../../_images/botdeflogrequests.png" style="width: 400px;" /></a>
 </div>
 </div>
 

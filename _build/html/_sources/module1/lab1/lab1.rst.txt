@@ -6,7 +6,7 @@ This lab will simulate botnet activity against the Webgoat virtual server and sh
 Connect to the lab environment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#. From the jumpbox, launch Chrome or firefox, click the BIG-IP bookmark and login to TMUI. admin/f5DEMOs4u
+#. From the jumphost (client01), launch Chrome or firefox, click the BIG-IP bookmark and login to TMUI. admin/password
 
 
 Configure a DOS Profile
@@ -36,7 +36,7 @@ Create a Bot Logging Profile
 
 #. Name the profile BotsLogger and check Bot Defense
 
-#. Check all the boxes and leave remote publisher to None 
+#. Check all the boxes under "Request Log" and leave remote publisher to None 
 
 #. Click Finished to save the profile
 
@@ -52,7 +52,7 @@ Assign DoS and Logging Profile to Virtual Server
 
 #. For DoS Protection Profile, select BotsLab
 
-#. For Log Profile, select BotsLogger
+#. For Log Profile, select "BotsLogger" to add it to list of selected logging profiles, leaving "Log Illegal Requests"
 
 #. Click Update to save changes
 
@@ -62,25 +62,34 @@ Assign DoS and Logging Profile to Virtual Server
 Simulate Bot Activity and Review Logs
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-1. On the client workstation, open a terminal app
+1. On the client01 jumphost, open a terminal app to get a cli prompt
 
 2. Run the following apache bench command:  
+
+|
 
 .. code-block:: bash
 
         ab -c 10 -n 10 -r http://10.1.10.145/
 
-3. Review the Security Logs at Security > Event Logs > Bot Security > Requests
+|
+
+
+3. Review the Security Logs at Security > Event Logs > Bot Defense > Requests
 
 4. Did requests succeed or fail? Why or why not?
 
-5. Run the attack using a custom user-agent:
+5. Run the attack using a custom user-agent (if you copy and paste the command below, be careful of the double-quote conversion):
+
+|
 
 .. code-block:: bash
 
-        ab -c 10 -n 10 -r -H “User-Agent: Agilitybot” http://10.1.10.145/
+        ab -c 10 -n 10 -r -H "User-Agent: Agilitybot" http://10.1.10.145/
 
-6. Review the request logs to determine if the attack was mitigated. Why did the attack succeed?
+|
+
+6. Review the Bot Defense request logs again to determine if the attack was mitigated. Why did the attack succeed?
 
 
 Add a custom bot signature to your BotsLab profile
@@ -98,6 +107,19 @@ Add a custom bot signature to your BotsLab profile
 
 .. image:: images/signature.png
 
-4. Rerun the attack from step 4 and review the request logs. Was the attack mitigated?
+4. Rerun the attack from step 5 of "Simulate Bot Activity and Review Logs" and review the request logs. Was the attack mitigated?
 
-5. Remove the DoS Protection Profile and the BotsLogger profile from the asm_vs before moving on.
+|
+
+.. code-block:: bash
+
+        ab -c 10 -n 10 -r -H "User-Agent: Agilitybot" http://10.1.10.145/
+
+|
+
+5. Remove the DoS Protection Profile and the BotsLogger profile from the asm_vs, as shown below, before moving on.
+
+|
+
+.. image:: images/botdeflogrequests.png
+        :width: 400px
