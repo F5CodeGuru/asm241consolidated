@@ -1,12 +1,21 @@
 Welcome to Agility Labs 2018!
 -----------------------------	
 
-Introduction
-~~~~~~~~~~~~~
+Introduction to ASM 241 - Elevated WAF Security
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Welcome to F5's Agility Labs, 2018 edition!  In this session we will continue the evolution of the policies created in the first two labs in the ASM series.  We will move beyond policies focusing on signature bsed protections and examine positive security models as well as some of the other advanced capabilties offered by F5's WAF.
+Welcome to F5's Agility Labs, 2018 edition! This class will focus on how to interact with ASM using the REST API, demonstrating  how the API can be used to help with daily tasks and improve security.
 
-Succeeding with Application Security
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+This is the 2nd class in a four part series based on
 
-https://support.f5.com/csp/article/K07359270#Link26
+`Succeeding with Application Security <https://support.f5.com/csp/article/K07359270>`_
+
+Here is a complete listing of all ASM classes offered at this years agility.
+
+ASM141 - Good WAF Security - Getting started with ASM
+
+ASM241 - Elevated WAF Security - Elevating ASM Protection
+
+ASM341 - High and Maximum WAF Security - Maximizing ASM Protection
+
+ASM342 - WAF Programmability - Enhancing ASM Security and Manageability

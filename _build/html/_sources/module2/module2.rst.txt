@@ -1,8 +1,6 @@
-Module 2: Beyond Signatures and Positive Security
+Module 2: Behavioral DoS
 ===================================================
-Expected time to complete: **1 hours**
-
-This introductory class covers the following topics:
+Expected time to complete: **45 min**
 
 .. toctree::
    :maxdepth: 1
