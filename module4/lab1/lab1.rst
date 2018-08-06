@@ -4,13 +4,16 @@ Lab 4: CSRF (Cross-Site Request Forgery)
 This lab will simulate a Cross-Site Request Forgery against WebGoat Application.
 It is designed to show how ASM can mitigate similar real world vulnerabilities. 
 
+|
+
 Connect to the Lab Environment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#. From the jumpbox, launch firefox, click the BIG-IP bookmark and login to TMUI. admin/f5DEMOs4u!
+#. From the jumphost, launch firefox, click the BIG-IP bookmark and login to TMUI. admin/password
 
-#. In separate tab connect to http://webgoat.local/WebGoat/login or click the bookmark and login as f5student/f5DEMOs4u!
+#. In separate tab connect to http://webgoat.local/WebGoat/login or click the bookmark and login as f5student/password
 
+|
 
 Test CSRF Behavior
 ~~~~~~~~~~~~~~~~~~
@@ -21,24 +24,37 @@ Test CSRF Behavior
 
 	*In this lesson you will use a common comment/review page for an online seller.*
 
+|
+
 .. image:: images/webgoatlesson.png
+        :width: 600px
+
+|
 
 3. Minimize the browser and open the CSRF.html file on your desktop.
 
-	*This is an ecample of a website asking you to register for a mailing list.*
+	*This is an example of a website asking you to register for a mailing list.*
 
 4. Type in "f5student@example.com" and click Sign Up.  This should open a new tab.  Go ahead and close that tab.
 
+|
+
 .. image:: images/attackersite.png
+        :width: 600px
+
+|
 
 .. note:: This type of tab would not normally pop up upon a successfull CSRF attack and is purley here for illustration purposes
+
+|
 
 5. Click back on your webgoat browser tab and take a look at the reviews section.  What do you notice?
 
 	*The attacker site took advantage of the fact that you were already logged in to WebGoat Application and used your account to post a review.*
 
-6. Go back to the attacker site tab, right click and select view source.  Examine the code to see the hidden form fields that were used for the attack.
+6. Go back to the attacker site tab, right-click and select view source.  Examine the code to see the hidden form fields that were used for the attack.
 
+|
 
 Mitigate the Attack
 ~~~~~~~~~~~~~~~~~~~
@@ -47,7 +63,12 @@ Mitigate the Attack
 
 2. Check enabled and in the New URL field type "/WebGoat/start.mvc*"
 
+|
+
 .. image:: images/csrfpol.png
+        :width: 600px
+
+|
 
 3. Click Add and Save, then click Apply Policy in the top right and OK.
 
@@ -55,8 +76,12 @@ Mitigate the Attack
 
 5. Expand CSRF Protection and ensure all checkboxes are checked for “CSRF attack detected”
 
-.. image:: images/csrfprotect.png
+|
 
+.. image:: images/csrfprotect.png
+        :width: 600px
+
+|
 
 Test the CSRF attack again
 ~~~~~~~~~~~~~~~~~~~~~~~~~~

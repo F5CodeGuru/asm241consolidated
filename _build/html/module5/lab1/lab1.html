@@ -259,7 +259,7 @@
 <div class="section" id="connect-to-the-lab-environment">
 <h2>Connect to the lab environment<a class="headerlink" href="#connect-to-the-lab-environment" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>From the jumpbox, launch Chrome, click the BIG-IP bookmark and login to TMUI. admin/f5DEMOs4u</li>
+<li>From the jumphost, launch Chrome, click the BIG-IP bookmark and login to TMUI. admin/password</li>
 <li>Open a second tab for use with the Hackazon App</li>
 </ol>
 </div>
@@ -272,11 +272,17 @@
 <li>Click the “Logout” button in the top right.</li>
 <li>Browse to <a class="reference external" href="http://hackazon.local/user/login?return_url=http://webgoat.local/WebGoat/login">http://hackazon.local/user/login?return_url=http://webgoat.local/WebGoat/login</a> and login again as ‘f5student’ with the proper password.</li>
 </ol>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Upon successful login you are taken to the WebGoat site.
 Any URL can be placed in the “return_url” parameter and the Hackazon site will redirect the user to it after they login.
 This is commonly used in phishing attacks to get the user to visit malicious sites.</p>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
 </div>
 </div>
 <div class="section" id="edit-the-security-policy">
@@ -285,19 +291,37 @@ This is commonly used in phishing attacks to get the user to visit malicious sit
 <li>On the BIG-IP TMUI Go to Security &gt; Application Security &gt; Headers &gt; Redirection Protection</li>
 <li>Verify that the “Current edited security policy” says “hackazon (blocking)”</li>
 </ol>
-<img alt="../../_images/httpredir.png" src="../../_images/httpredir.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/httpredir.png"><img alt="../../_images/httpredir.png" src="../../_images/httpredir.png" style="width: 600px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <ol class="arabic simple" start="3">
 <li>The policy currently allows for redirection to any domain.</li>
 </ol>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">This is the default behavior for a fundamental security policy and should always be adjusted for your Application</p>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
 </div>
 <ol class="arabic simple" start="4">
 <li>Add redirection protection to the policy by only allowing the site domain name. In the Domain Name field, type “hackazon.local” and click “Add”.</li>
 <li>Click the checkbox next to “*” and click the Delete button.</li>
 </ol>
-<img alt="../../_images/httprediradd.png" src="../../_images/httprediradd.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/httprediradd.png"><img alt="../../_images/httprediradd.png" src="../../_images/httprediradd.png" style="width: 600px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <ol class="arabic simple" start="6">
 <li>Click Save, then click Apply Policy and OK</li>
 </ol>
@@ -307,20 +331,38 @@ This is commonly used in phishing attacks to get the user to visit malicious sit
 <ol class="arabic simple">
 <li>Browse again to <a class="reference external" href="http://hackazon.local/user/login?return_url=http://webgoat.local/WebGoat/login">http://hackazon.local/user/login?return_url=http://webgoat.local/WebGoat/login</a></li>
 </ol>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">you may have to logout first and then go to the URL again.  Even though you were redirected to the other site, you were still logged in to Hackazon.</p>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
 </div>
 <ol class="arabic simple" start="2">
 <li>Login again as ‘f5student’ with the proper password.</li>
 <li>You should get a block page.</li>
 </ol>
-<img alt="../../_images/blocked.png" src="../../_images/blocked.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/blocked.png"><img alt="../../_images/blocked.png" src="../../_images/blocked.png" style="width: 600px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <ol class="arabic simple" start="4">
 <li>On the BIG-IP, go to Security, and click on Event Logs.</li>
 <li>You should see the HTTP redirect event, “Illegal redirection attempt”, blocked and logged.</li>
 </ol>
-<img alt="../../_images/redir_illegal.png" src="../../_images/redir_illegal.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/redir_illegal.png"><img alt="../../_images/redir_illegal.png" src="../../_images/redir_illegal.png" style="width: 600px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 </div>
 </div>
 

@@ -6,30 +6,48 @@ In this lab you will learn how to utilize ASM to mitigate the use of malicious X
 Connect to the lab environment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-1. From the jumpbox, launch chrome, click the BIG-IP bookmark and login to TMUI. admin/f5DEMOs4u
+1. From the jumphost, launch Chrome, click the BIG-IP bookmark and login to TMUI. admin/password
+
+|
 
 .. note::
 	While you can use firefox for connecting to the BIG-IP in this lab, you will be intercepting firefox traffic.
 	It may be easier to use two browsers instead of two tabs.
 
-2. From the jumpbox, launch firefox, which we will use to access WebGoat.
+|
 
-3. In firefox go to the right hand side icon and select "Preferences".  Then select Advanced and Settings under connection.
+2. From the jumphost, launch firefox, which we will use to access WebGoat.
+
+3. In firefox go to the right-hand side icon and select "Preferences".  Then select Advanced and Settings under connection.
+
+|
 
 .. image:: images/settings.png
+        :width: 600px
+
+|
 
 4. Set your proxy settings to manual as shown in the screenshot.
 
-.. image:: images/proxy.png
+|
 
-5. From the jumpbox desktop, launch Burp Suite. 
+.. image:: images/proxy.png
+        :width: 600px
+
+|
+
+5. From the jumphost desktop, launch Burp Suite. 
 
   - Select Temporary Projects and click Next.
   - Leave Defaults checked and click "Start Burp"
   - Select the "Proxy" tab and then turn intercept off.
 
-.. image:: images/proxyoff.png
+|
 
+.. image:: images/proxyoff.png
+        :width: 600px
+
+|
 
 An XXE Vulnerability
 ~~~~~~~~~~~~~~~~~~~~
@@ -55,28 +73,47 @@ Manipulating the Request
 
 1. In Burp Suite turn Intercept back to on.
 
+|
+
 .. note::
 	The firefox browser is being pointed to localhost as a proxy and therefore Burp may intercept the request.
 
-2. submit another comment using something simple like "test" or "abc"
+|
+
+2. Submit another comment using something simple like "test" or "abc"
 
 3. Burp should come back to the front, but if not switch to Burp to examine the request.
 
+|
+
 .. image:: images/examplereq.png
+        :width: 600px
+
+|
 
 4. Edit the request with the following XML
 
-.. code block:: xml
+|
 
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE foo [<!ENTITY xxe SYSTEM "file:///" >]>
-<comment>
-<text>abc&xxe;</text>
-</comment>
+.. code-block:: xml
+
+        <?xml version="1.0" encoding="UTF-8" ?>
+        <!DOCTYPE foo [<!ENTITY xxe SYSTEM "file:///" >]>
+        <comment>
+        <text>abc&xxe;</text>
+        </comment>
+
+|
 
 *There should be an XML document on your desktop named xxe which you may paste from to save time, but please read and understand the request.*
 
+|
+
 .. image:: images/editedreq.png
+        :width: 600px
+
+|
+
 
 5. Click Forward to pass the request on to the server and make sure you forward any remaining requests before turning intercept back off.
 
@@ -86,13 +123,18 @@ Manipulating the Request
 Mitigate an XXE attack
 ~~~~~~~~~~~~~~~~~~~~~~
 
-1. Login to the BIG-IP as before with admin/f5DEMOs4u!
+1. Login to the BIG-IP as before with admin/password
 
 2. Browse to Local Traffic > Virtual Servers > asm_vs and select "Policies" under the security tab
 
 3. Make sure "ASM241" is selected as your Application Security Policy and that you have "Log Illegal Requests" as your Log Profile
 
+|
+
 .. image:: images/ltmsettings.png
+        :width: 600px
+
+|
 
 4. Go to Security > Application Security > Attack Signatures and make sure your current edited policy is ASM241.
 
@@ -100,9 +142,14 @@ Mitigate an XXE attack
 
 6. Select the following signatures and click enforce.
 
-.. image:: images/attacksig.png
+|
 
-7. Using Burp suite and firefox, turn intercept back on and run the same test, maipulating the request. What happens this time?
+.. image:: images/attacksig.png
+        :width: 600px
+
+|     
+
+7. Using Burp suite and firefox, turn intercept back on and run the same test, manipulating the request. What happens this time?
 
 
 Check your logs
@@ -112,8 +159,14 @@ Check your logs
 
 2. You should see an entry that trigger the now enforced Attack Signatures.
 
-.. image:: images/xxe_event.png
+|
 
+.. image:: images/xxe_event.png
+        :width: 600px
+
+|
+
+     
 3. What is another way that ASM could be used to mitigate XXE injection?
 
 *Hint: Take a look at the Application Security > Content Profiles > XML Profiles*

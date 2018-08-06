@@ -1,13 +1,13 @@
 Lab 7: Disallowed File Types
 ----------------------------------------
 
-In this lab you will configure a a security policy in ASM to block vulnerable components based on a file type
+In this lab you will configure a a security policy in ASM to block vulnerable components based on a file type.
 
 
 Connect to the lab environment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#. From the jumpbox, launch Chrome, click the BIG-IP bookmark and login to TMUI. admin/f5DEMOs4u
+#. From the jumphost, launch Chrome, click the BIG-IP bookmark and login to TMUI. admin/password
 
 #. Open a second tab for use with the WebGoat App
 
@@ -21,11 +21,17 @@ Take a look at the WebGoat object
 
 #. Note the Software Supply Chain .png graphic in the middle of the page.
 
+|
+
 .. image:: images/png.png
+        :width: 600px
+
+|
 
 .. note:: 
 	This is a .png file we are going to block using the BIG-IP ASM policy control “Disallowed File Types”.
 
+|
 
 Edit the Security Policy
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -36,7 +42,12 @@ Edit the Security Policy
 
 #. Make sure the logging Profile is set to "Log Illegal Requests"
 
+|
+
 .. image:: images/ltmsettings.png
+        :width: 600px
+
+|
 
 #. Go to Security > Application Security > File Types > Disallowed File Types
 
@@ -46,8 +57,12 @@ Edit the Security Policy
 
 #. Click Apply Policy in the top right, then click OK.
 
-.. image:: images/disallow.png 
+|
 
+.. image:: images/disallow.png 
+        :width: 600px
+
+|
 
 Test File Type Protection
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -58,6 +73,11 @@ Test File Type Protection
 
 #. The Software Supply Chain .png graphic does not load, because it is blocked by the ASM Disallowed File Types setting blocking .png files.
 
+|
+
 .. image:: images/blockedpng.png
+        :width: 600px
+
+|
 
 #. What other applications are there for this type of policy?

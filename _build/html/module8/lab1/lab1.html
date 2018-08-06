@@ -261,24 +261,42 @@
 <div class="section" id="connect-to-the-lab-environment">
 <h2>Connect to the lab environment<a class="headerlink" href="#connect-to-the-lab-environment" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>From the jumpbox, launch chrome, click the BIG-IP bookmark and login to TMUI. admin/f5DEMOs4u</li>
+<li>From the jumphost, launch Chrome, click the BIG-IP bookmark and login to TMUI. admin/password</li>
 </ol>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">While you can use firefox for connecting to the BIG-IP in this lab, you will be intercepting firefox traffic.
 It may be easier to use two browsers instead of two tabs.</p>
 </div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <ol class="arabic simple" start="2">
-<li>From the jumpbox, launch firefox, which we will use to access WebGoat.</li>
-<li>In firefox go to the right hand side icon and select “Preferences”.  Then select Advanced and Settings under connection.</li>
+<li>From the jumphost, launch firefox, which we will use to access WebGoat.</li>
+<li>In firefox go to the right-hand side icon and select “Preferences”.  Then select Advanced and Settings under connection.</li>
 </ol>
-<img alt="../../_images/settings1.png" src="../../_images/settings1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/settings1.png"><img alt="../../_images/settings1.png" src="../../_images/settings1.png" style="width: 600px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <ol class="arabic simple" start="4">
 <li>Set your proxy settings to manual as shown in the screenshot.</li>
 </ol>
-<img alt="../../_images/proxy1.png" src="../../_images/proxy1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/proxy1.png"><img alt="../../_images/proxy1.png" src="../../_images/proxy1.png" style="width: 600px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <ol class="arabic simple" start="5">
-<li>From the jumpbox desktop, launch Burp Suite.</li>
+<li>From the jumphost desktop, launch Burp Suite.</li>
 </ol>
 <blockquote>
 <div><ul class="simple">
@@ -287,7 +305,13 @@ It may be easier to use two browsers instead of two tabs.</p>
 <li>Select the “Proxy” tab and then turn intercept off.</li>
 </ul>
 </div></blockquote>
-<img alt="../../_images/proxyoff1.png" src="../../_images/proxyoff1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/proxyoff1.png"><img alt="../../_images/proxyoff1.png" src="../../_images/proxyoff1.png" style="width: 600px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 </div>
 <div class="section" id="an-xxe-vulnerability">
 <h2>An XXE Vulnerability<a class="headerlink" href="#an-xxe-vulnerability" title="Permalink to this headline">¶</a></h2>
@@ -311,25 +335,51 @@ It may be easier to use two browsers instead of two tabs.</p>
 <ol class="arabic simple">
 <li>In Burp Suite turn Intercept back to on.</li>
 </ol>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">The firefox browser is being pointed to localhost as a proxy and therefore Burp may intercept the request.</p>
 </div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <ol class="arabic simple" start="2">
-<li>submit another comment using something simple like “test” or “abc”</li>
+<li>Submit another comment using something simple like “test” or “abc”</li>
 <li>Burp should come back to the front, but if not switch to Burp to examine the request.</li>
 </ol>
-<img alt="../../_images/examplereq.png" src="../../_images/examplereq.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/examplereq.png"><img alt="../../_images/examplereq.png" src="../../_images/examplereq.png" style="width: 600px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <ol class="arabic simple" start="4">
 <li>Edit the request with the following XML</li>
 </ol>
-<p>&lt;?xml version=”1.0” encoding=”UTF-8” ?&gt;
-&lt;!DOCTYPE foo [&lt;!ENTITY xxe SYSTEM “<a class="reference external" href="file:///">file:///</a>” &gt;]&gt;
-&lt;comment&gt;
-&lt;text&gt;abc&amp;xxe;&lt;/text&gt;
-&lt;/comment&gt;</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span>
+<span class="cp">&lt;!DOCTYPE foo [&lt;!ENTITY xxe SYSTEM &quot;file:///&quot; &gt;</span>]&gt;
+<span class="nt">&lt;comment&gt;</span>
+<span class="nt">&lt;text&gt;</span>abc<span class="ni">&amp;xxe;</span><span class="nt">&lt;/text&gt;</span>
+<span class="nt">&lt;/comment&gt;</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <p><em>There should be an XML document on your desktop named xxe which you may paste from to save time, but please read and understand the request.</em></p>
-<img alt="../../_images/editedreq.png" src="../../_images/editedreq.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/editedreq.png"><img alt="../../_images/editedreq.png" src="../../_images/editedreq.png" style="width: 600px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <ol class="arabic simple" start="5">
 <li>Click Forward to pass the request on to the server and make sure you forward any remaining requests before turning intercept back off.</li>
 <li>What was the result?</li>
@@ -338,19 +388,31 @@ It may be easier to use two browsers instead of two tabs.</p>
 <div class="section" id="mitigate-an-xxe-attack">
 <h2>Mitigate an XXE attack<a class="headerlink" href="#mitigate-an-xxe-attack" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Login to the BIG-IP as before with admin/f5DEMOs4u!</li>
+<li>Login to the BIG-IP as before with admin/password</li>
 <li>Browse to Local Traffic &gt; Virtual Servers &gt; asm_vs and select “Policies” under the security tab</li>
 <li>Make sure “ASM241” is selected as your Application Security Policy and that you have “Log Illegal Requests” as your Log Profile</li>
 </ol>
-<img alt="../../_images/ltmsettings1.png" src="../../_images/ltmsettings1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/ltmsettings1.png"><img alt="../../_images/ltmsettings1.png" src="../../_images/ltmsettings1.png" style="width: 600px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <ol class="arabic simple" start="4">
 <li>Go to Security &gt; Application Security &gt; Attack Signatures and make sure your current edited policy is ASM241.</li>
 <li>Under Policy Attack Signatures, select “Signature name contains” and enter “External” before clicking Go</li>
 <li>Select the following signatures and click enforce.</li>
 </ol>
-<img alt="../../_images/attacksig.png" src="../../_images/attacksig.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/attacksig.png"><img alt="../../_images/attacksig.png" src="../../_images/attacksig.png" style="width: 600px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <ol class="arabic simple" start="7">
-<li>Using Burp suite and firefox, turn intercept back on and run the same test, maipulating the request. What happens this time?</li>
+<li>Using Burp suite and firefox, turn intercept back on and run the same test, manipulating the request. What happens this time?</li>
 </ol>
 </div>
 <div class="section" id="check-your-logs">
@@ -359,7 +421,13 @@ It may be easier to use two browsers instead of two tabs.</p>
 <li>On BIG-IP go to Application Security &gt; Event Logs</li>
 <li>You should see an entry that trigger the now enforced Attack Signatures.</li>
 </ol>
-<img alt="../../_images/xxe_event.png" src="../../_images/xxe_event.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/xxe_event.png"><img alt="../../_images/xxe_event.png" src="../../_images/xxe_event.png" style="width: 600px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <ol class="arabic simple" start="3">
 <li>What is another way that ASM could be used to mitigate XXE injection?</li>
 </ol>

@@ -261,7 +261,7 @@
 <div class="section" id="connect-to-the-lab-environment">
 <h2>Connect to the Lab Environment<a class="headerlink" href="#connect-to-the-lab-environment" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic">
-<li><p class="first">Open Chrome or Firefox and login to the BIG-IP TMUI as f5student/f5DEMOs4u!</p>
+<li><p class="first">From the jumphost, launch Chrome or Firefox and login to the BIG-IP TMUI as f5student/password</p>
 </li>
 <li><p class="first">Open the hackazon application in firefox.</p>
 <blockquote>
@@ -271,13 +271,25 @@
 <li><p class="first">In firefox go to the right hand side icon and select “Preferences”.  Then select Advanced and Settings under connection.</p>
 </li>
 </ol>
-<img alt="../../_images/settings.png" src="../../_images/settings.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/settings.png"><img alt="../../_images/settings.png" src="../../_images/settings.png" style="width: 600px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <ol class="arabic simple" start="4">
 <li>Set your proxy settings to manual as shown in the screenshot.</li>
 </ol>
-<img alt="../../_images/proxy.png" src="../../_images/proxy.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/proxy.png"><img alt="../../_images/proxy.png" src="../../_images/proxy.png" style="width: 600px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <ol class="arabic simple" start="5">
-<li>From the jumpbox desktop, launch Burp Suite.</li>
+<li>From the jumphost desktop, launch Burp Suite.</li>
 </ol>
 <blockquote>
 <div><ul class="simple">
@@ -286,7 +298,13 @@
 <li>Select the “Proxy” tab and then turn intercept off.</li>
 </ul>
 </div></blockquote>
-<img alt="../../_images/proxyoff.png" src="../../_images/proxyoff.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/proxyoff.png"><img alt="../../_images/proxyoff.png" src="../../_images/proxyoff.png" style="width: 600px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 </div>
 <div class="section" id="examine-the-cookies">
 <h2>Examine the cookies<a class="headerlink" href="#examine-the-cookies" title="Permalink to this headline">¶</a></h2>
@@ -294,11 +312,23 @@
 <li>Turn intercept to on in Burp and in your hackazon tab, click on one or various links like “Get the Best Price”</li>
 <li>In Burp, examine the request.  Notice the cookie names and their values before forwarding.</li>
 </ol>
-<img alt="../../_images/cookiesample.png" src="../../_images/cookiesample.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/cookiesample.png"><img alt="../../_images/cookiesample.png" src="../../_images/cookiesample.png" style="width: 600px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <ol class="arabic simple" start="3">
 <li>With intercept still set to on, click on the same link, but this time select the cookie value and edit it.</li>
 </ol>
-<img alt="../../_images/cookiechange.png" src="../../_images/cookiechange.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/cookiechange.png"><img alt="../../_images/cookiechange.png" src="../../_images/cookiechange.png" style="width: 600px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <ol class="arabic simple" start="4">
 <li>Notice the there is no change resulting response, but should we allow cookies to be manipulated?</li>
 <li>Turn intercept off</li>
@@ -311,7 +341,13 @@
 <li>Make sure the Current edited security policy is “hackazon_asm241” and select Advanced on the right side</li>
 <li>Down to Cookies and expand</li>
 </ol>
-<img alt="../../_images/cookiesettings.png" src="../../_images/cookiesettings.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/cookiesettings.png"><img alt="../../_images/cookiesettings.png" src="../../_images/cookiesettings.png" style="width: 600px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <ol class="arabic" start="4">
 <li><p class="first">Check the boxes for “Learn and enforce new unmodified cookies” as well as Learn, Alarm, and Block for “Modified domain cookies”</p>
 </li>
@@ -331,26 +367,56 @@
 <li>Make sure that the Current edited policy is “hackazon_asm241” and search for “Enforce Cookie”</li>
 <li>Select the entry for JSESSIONID and Accept the Suggection</li>
 </ol>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/suggestion.png"><img alt="../../_images/suggestion.png" src="../../_images/suggestion.png" style="width: 600px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<blockquote>
+<div><em>Note you may accept the suggestion, but place the cookie in staging.  For this lab go ahead and enforce the suggestion</em></div></blockquote>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <ol class="arabic simple" start="6">
 <li>Go to Application Security &gt; Headers &gt; Cookie List and examine the new entries for Enforced Cookies</li>
 </ol>
-<img alt="../../_images/cookieenforce.png" src="../../_images/cookieenforce.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/cookieenforce.png"><img alt="../../_images/cookieenforce.png" src="../../_images/cookieenforce.png" style="width: 600px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 </div>
 <div class="section" id="trigger-the-cookie-modification-protection">
 <h2>Trigger the Cookie Modification Protection<a class="headerlink" href="#trigger-the-cookie-modification-protection" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>Turn intercept to on in Burp and in your hackazon tab, click on one or various links like “Get the Best Price”</li>
-<li>In Burp, examine the request.  Notice the JSESSIONID cookie and edit the value. Then Click Forward</li>
+<li>In Burp, examine the request. Notice the JSESSIONID cookie and edit the value. Then Click Forward</li>
 <li>You should receive a block page from ASM</li>
 </ol>
-<img alt="../../_images/blocked1.png" src="../../_images/blocked1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/blocked1.png"><img alt="../../_images/blocked1.png" src="../../_images/blocked1.png" style="width: 600px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <ol class="arabic simple" start="5">
 <li>Turn intercept off and go back to BIG-IP tab</li>
 <li>Go to Security &gt; Event Logs and examine the illegal request</li>
 </ol>
-<img alt="../../_images/illegal.png" src="../../_images/illegal.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/illegal.png"><img alt="../../_images/illegal.png" src="../../_images/illegal.png" style="width: 600px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <ol class="arabic simple" start="7">
-<li>Turn intercept back to off and close Burp Suite.  Then return to your firefox settings and change the proxy settings back to “No Proxy”</li>
+<li>Turn intercept back to off and close Burp Suite. Then return to your firefox settings and change the proxy settings back to “No Proxy”</li>
 </ol>
 </div>
 </div>

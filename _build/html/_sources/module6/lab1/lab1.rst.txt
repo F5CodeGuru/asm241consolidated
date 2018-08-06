@@ -6,7 +6,7 @@ In this lab you will learn how ASM can learn about your application's cookies an
 Connect to the Lab Environment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-1. Open Chrome or Firefox and login to the BIG-IP TMUI as f5student/f5DEMOs4u!
+1. From the jumphost, launch Chrome or Firefox and login to the BIG-IP TMUI as f5student/password
 
 2. Open the hackazon application in firefox.
 
@@ -14,21 +14,34 @@ Connect to the Lab Environment
 
 3. In firefox go to the right hand side icon and select "Preferences".  Then select Advanced and Settings under connection.
 
+|
+
 .. image:: images/settings.png
+        :width: 600px
+
+|
 
 4. Set your proxy settings to manual as shown in the screenshot.
 
-.. image:: images/proxy.png
+|
 
-5. From the jumpbox desktop, launch Burp Suite. 
+.. image:: images/proxy.png
+        :width: 600px
+
+|
+
+5. From the jumphost desktop, launch Burp Suite. 
 
   - Select Temporary Projects and click Next.
   - Leave Defaults checked and click "Start Burp"
   - Select the "Proxy" tab and then turn intercept off.
 
+|
+
 .. image:: images/proxyoff.png
+        :width: 600px
 
-
+|
 
 Examine the cookies
 ~~~~~~~~~~~~~~~~~~~
@@ -37,11 +50,21 @@ Examine the cookies
 
 2. In Burp, examine the request.  Notice the cookie names and their values before forwarding.
 
+|
+
 .. image:: images/cookiesample.png
+        :width: 600px
+
+|
 
 3. With intercept still set to on, click on the same link, but this time select the cookie value and edit it.
 
+|
+
 .. image:: images/cookiechange.png
+        :width: 600px
+
+|
 
 4. Notice the there is no change resulting response, but should we allow cookies to be manipulated?
 
@@ -57,7 +80,12 @@ Configure BIG-IP to learn and enforce cookies
 
 3. Down to Cookies and expand
 
+|
+
 .. image:: images/cookiesettings.png
+        :width: 600px
+
+|
 
 4. Check the boxes for "Learn and enforce new unmodified cookies" as well as Learn, Alarm, and Block for "Modified domain cookies"
 
@@ -79,30 +107,52 @@ Traffic Learning
 
 5. Select the entry for JSESSIONID and Accept the Suggection
 
+|   
+
 .. image:: images/suggestion.png
+        :width: 600px
+
+|
 
 	*Note you may accept the suggestion, but place the cookie in staging.  For this lab go ahead and enforce the suggestion*
 
+|
+
 6. Go to Application Security > Headers > Cookie List and examine the new entries for Enforced Cookies
 
-.. image:: images/cookieenforce.png
+|
 
+.. image:: images/cookieenforce.png
+        :width: 600px
+
+|
 
 Trigger the Cookie Modification Protection
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 1. Turn intercept to on in Burp and in your hackazon tab, click on one or various links like "Get the Best Price"
 
-2. In Burp, examine the request.  Notice the JSESSIONID cookie and edit the value. Then Click Forward
+2. In Burp, examine the request. Notice the JSESSIONID cookie and edit the value. Then Click Forward
 
 3. You should receive a block page from ASM
 
+|
+
 .. image:: images/blocked.png
+        :width: 600px
+
+|
 
 5. Turn intercept off and go back to BIG-IP tab
 
 6. Go to Security > Event Logs and examine the illegal request
 
-.. image:: images/illegal.png
+|
 
-7. Turn intercept back to off and close Burp Suite.  Then return to your firefox settings and change the proxy settings back to "No Proxy"
+.. image:: images/illegal.png
+        :width: 600px
+
+|
+
+
+7. Turn intercept back to off and close Burp Suite. Then return to your firefox settings and change the proxy settings back to "No Proxy"

@@ -265,14 +265,14 @@
 <div class="section" id="connect-to-the-lab-environment">
 <h2>Connect to the lab environment<a class="headerlink" href="#connect-to-the-lab-environment" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>From the jumpbox, launch chrome, click the BIG-IP bookmark and login to TMUI. admin/f5DEMOs4u</li>
-<li>From the jumpbox, launch firefox, which we will use to create the macro.</li>
+<li>From the jumphost, launch chrome, click the BIG-IP bookmark and login to TMUI. admin/password</li>
+<li>From the jumphost, launch firefox, which we will use to create the macro.</li>
 </ol>
 </div>
 <div class="section" id="remove-any-existing-security-policy-from-the-webgoat-virtual-server">
 <h2>Remove any existing security policy from the Webgoat Virtual Server<a class="headerlink" href="#remove-any-existing-security-policy-from-the-webgoat-virtual-server" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>ON the BIG-IP TMUI, Go to Local Traffic &gt; Virtual Servers &gt; asm_vs</li>
+<li>On the BIG-IP TMUI, Go to Local Traffic &gt; Virtual Servers &gt; asm_vs</li>
 <li>Click the Security &gt; Policies tab at the top</li>
 <li>Change the Application Security Policy to “Disabled”</li>
 <li>Change the Logging Profile to “Log Illegal Requests” and click update</li>

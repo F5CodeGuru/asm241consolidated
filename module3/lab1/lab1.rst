@@ -6,15 +6,15 @@ This lab will show you how to configure protection against webscraping activity 
 Connect to the lab environment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#. From the jumpbox, launch chrome, click the BIG-IP bookmark and login to TMUI. admin/f5DEMOs4u
+#. From the jumphost, launch chrome, click the BIG-IP bookmark and login to TMUI. admin/password
 
-#. From the jumpbox, launch firefox, which we will use to create the macro.
+#. From the jumphost, launch firefox, which we will use to create the macro.
 
 
 Remove any existing security policy from the Webgoat Virtual Server
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#. ON the BIG-IP TMUI, Go to Local Traffic > Virtual Servers > asm_vs
+#. On the BIG-IP TMUI, Go to Local Traffic > Virtual Servers > asm_vs
 
 #. Click the Security > Policies tab at the top 
 
