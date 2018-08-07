@@ -295,7 +295,7 @@ It is designed to show how ASM can mitigate similar real world vulnerabilities.<
 <div><p><em>This is an example of a website asking you to register for a mailing list.</em></p>
 </div></blockquote>
 </li>
-<li><p class="first">Type in “<a class="reference external" href="mailto:f5student&#37;&#52;&#48;example&#46;com">f5student<span>&#64;</span>example<span>&#46;</span>com</a>” and click Sign Up.  This should open a new tab.  Go ahead and close that tab.</p>
+<li><p class="first">Type in “<a class="reference external" href="mailto:f5student&#37;&#52;&#48;example&#46;com">f5student<span>&#64;</span>example<span>&#46;</span>com</a>” and click Sign Up. This should open a new tab, leave the tab open.</p>
 </li>
 </ol>
 <div class="line-block">
@@ -313,7 +313,7 @@ It is designed to show how ASM can mitigate similar real world vulnerabilities.<
 <div class="line"><br /></div>
 </div>
 <ol class="arabic" start="5">
-<li><p class="first">Click back on your webgoat browser tab and take a look at the reviews section.  What do you notice?</p>
+<li><p class="first">Click back on your webgoat browser tab. Then refresh (you ust refresh the page to view the changes) the reviews section.  What do you notice?</p>
 <blockquote>
 <div><p><em>The attacker site took advantage of the fact that you were already logged in to WebGoat Application and used your account to post a review.</em></p>
 </div></blockquote>
@@ -328,7 +328,20 @@ It is designed to show how ASM can mitigate similar real world vulnerabilities.<
 <div class="section" id="mitigate-the-attack">
 <h2>Mitigate the Attack<a class="headerlink" href="#mitigate-the-attack" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>login to the BIG-IP and go to Security &gt; Application Security &gt; CSRF Protection</li>
+<li>Apply the ASM241 Security Policy to the asm_vs. On the BIG-IP TMUI, go to Local traffic &gt; Virtual Servers &gt; asm_vs</li>
+<li>Click the Security tab and make sure “Application Security Policy” is set to “asm241”.</li>
+<li>Make sure the logging Profile is set to “Log Illegal Requests”</li>
+<li>Click Update to apply the policy to asm_vs.</li>
+</ol>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/ltmsettings2.png"><img alt="../../_images/ltmsettings2.png" src="../../_images/ltmsettings2.png" style="width: 600px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ol class="arabic simple" start="5">
+<li>Apply CSRF Protection to the ASM241 policy. Go to Security &gt; Application Security &gt; CSRF Protection, ensuring the “Currently edited security policy” is ASM241.</li>
 <li>Check enabled and in the New URL field type “/WebGoat/start.mvc*”</li>
 </ol>
 <div class="line-block">
@@ -338,10 +351,10 @@ It is designed to show how ASM can mitigate similar real world vulnerabilities.<
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<ol class="arabic simple" start="3">
+<ol class="arabic simple" start="5">
 <li>Click Add and Save, then click Apply Policy in the top right and OK.</li>
 <li>Go to Security &gt; Application Security &gt; Policy Building &gt; Learning and Blocking Settings and select “Advanced” in the drop-down on the right.</li>
-<li>Expand CSRF Protection and ensure all checkboxes are checked for “CSRF attack detected”</li>
+<li>Expand CSRF Protection and ensure all checkboxes are checked for “CSRF attack detected”.</li>
 </ol>
 <div class="line-block">
 <div class="line"><br /></div>

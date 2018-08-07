@@ -35,7 +35,7 @@ Test CSRF Behavior
 
 	*This is an example of a website asking you to register for a mailing list.*
 
-4. Type in "f5student@example.com" and click Sign Up.  This should open a new tab.  Go ahead and close that tab.
+4. Type in "f5student@example.com" and click Sign Up. This should open a new tab, leave the tab open. 
 
 |
 
@@ -48,7 +48,7 @@ Test CSRF Behavior
 
 |
 
-5. Click back on your webgoat browser tab and take a look at the reviews section.  What do you notice?
+5. Click back on your webgoat browser tab. Then refresh (you ust refresh the page to view the changes) the reviews section.  What do you notice?
 
 	*The attacker site took advantage of the fact that you were already logged in to WebGoat Application and used your account to post a review.*
 
@@ -59,9 +59,24 @@ Test CSRF Behavior
 Mitigate the Attack
 ~~~~~~~~~~~~~~~~~~~
 
-1. login to the BIG-IP and go to Security > Application Security > CSRF Protection
+1. Apply the ASM241 Security Policy to the asm_vs. On the BIG-IP TMUI, go to Local traffic > Virtual Servers > asm_vs
 
-2. Check enabled and in the New URL field type "/WebGoat/start.mvc*"
+2. Click the Security tab and make sure “Application Security Policy” is set to “asm241”. 
+   
+3. Make sure the logging Profile is set to “Log Illegal Requests”
+
+4. Click Update to apply the policy to asm_vs.
+
+|
+
+.. image:: images/ltmsettings.png
+        :width: 600px
+
+|
+
+5. Apply CSRF Protection to the ASM241 policy. Go to Security > Application Security > CSRF Protection, ensuring the "Currently edited security policy" is ASM241.
+
+6. Check enabled and in the New URL field type "/WebGoat/start.mvc*"
 
 |
 
@@ -70,11 +85,11 @@ Mitigate the Attack
 
 |
 
-3. Click Add and Save, then click Apply Policy in the top right and OK.
+5. Click Add and Save, then click Apply Policy in the top right and OK.
 
-4. Go to Security > Application Security > Policy Building > Learning and Blocking Settings and select “Advanced” in the drop-down on the right.
+6. Go to Security > Application Security > Policy Building > Learning and Blocking Settings and select “Advanced” in the drop-down on the right.
 
-5. Expand CSRF Protection and ensure all checkboxes are checked for “CSRF attack detected”
+7. Expand CSRF Protection and ensure all checkboxes are checked for “CSRF attack detected”.
 
 |
 
