@@ -268,7 +268,7 @@
 <div><p><em>Note you must use firefox for the hackazon application because only it is proxied to Burp</em></p>
 </div></blockquote>
 </li>
-<li><p class="first">In firefox go to the right hand side icon and select “Preferences”.  Then select Advanced and Settings under connection.</p>
+<li><p class="first">In firefox go to the right hand side icon and select “Preferences”.</p>
 </li>
 </ol>
 <div class="line-block">
@@ -279,7 +279,17 @@
 <div class="line"><br /></div>
 </div>
 <ol class="arabic simple" start="4">
-<li>Set your proxy settings to manual as shown in the screenshot.</li>
+<li>Then select Advanced &gt; Network,  under “Connection” select “Settings”.</li>
+</ol>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/ffAdvanced.png"><img alt="../../_images/ffAdvanced.png" src="../../_images/ffAdvanced.png" style="width: 600px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ol class="arabic simple" start="5">
+<li>Set your proxy settings to manual as shown in the screenshot, click “Ok”.</li>
 </ol>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -289,7 +299,7 @@
 <div class="line"><br /></div>
 </div>
 <ol class="arabic simple" start="5">
-<li>From the jumphost desktop, launch Burp Suite.</li>
+<li>From the jumphost desktop, launch Burp Suite using the icon on the desktop. If you are prompted to update Burp, ignore this pop-up by clicking “Close”.</li>
 </ol>
 <blockquote>
 <div><ul class="simple">
@@ -309,8 +319,8 @@
 <div class="section" id="examine-the-cookies">
 <h2>Examine the cookies<a class="headerlink" href="#examine-the-cookies" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Turn intercept to on in Burp and in your hackazon tab, click on one or various links like “Get the Best Price”</li>
-<li>In Burp, examine the request.  Notice the cookie names and their values before forwarding.</li>
+<li>Turn intercept to on in Burp and in your hackazon tab, click on one or various links like “Get the Best Price”.</li>
+<li>In Burp, examine the request. Notice the cookie names and their values before forwarding, click Forward to send the request to the Hackazon app, then view the Hackazon app in the firefox tab to view the response.</li>
 </ol>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -331,15 +341,15 @@
 </div>
 <ol class="arabic simple" start="4">
 <li>Notice the there is no change resulting response, but should we allow cookies to be manipulated?</li>
-<li>Turn intercept off</li>
+<li>Turn intercept off.</li>
 </ol>
 </div>
 <div class="section" id="configure-big-ip-to-learn-and-enforce-cookies">
 <h2>Configure BIG-IP to learn and enforce cookies<a class="headerlink" href="#configure-big-ip-to-learn-and-enforce-cookies" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>In BIG-IP TMUI, go to Application Security &gt; Policy Building &gt; Learning and Blocking Settings</li>
-<li>Make sure the Current edited security policy is “hackazon_asm241” and select Advanced on the right side</li>
-<li>Down to Cookies and expand</li>
+<li>In BIG-IP TMUI, go to Security &gt; Application Security &gt; Policy Building &gt; Learning and Blocking Settings.</li>
+<li>Make sure the Current edited security policy is “hackazon_asm241” and select Advanced on the right side.</li>
+<li>Scroll down to Cookies and expand.</li>
 </ol>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -361,9 +371,9 @@
 <div class="section" id="traffic-learning">
 <h2>Traffic Learning<a class="headerlink" href="#traffic-learning" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Now that our policy is setup to learn about our application’s cookies, we need to replicate the traffic from earlier for ASM.</li>
-<li>Open your tab with hackzon and click on the link for “Get the Best Price”. You may want to click on a few other links to have ASM learn other cookies.</li>
-<li>Go back to BIG-IP and go to Application Security &gt; Policy Building &gt; Traffic Learning</li>
+<li>Now that our policy is set up to learn about our application’s cookies, we need to replicate the traffic from earlier for ASM.</li>
+<li>Open your firefox tab with hackzon and click on the link for “Get the Best Price”. You may want to click on a few other links to have ASM learn other cookies.</li>
+<li>Go back to BIG-IP and go to Security &gt; Application Security &gt; Policy Building &gt; Traffic Learning</li>
 <li>Make sure that the Current edited policy is “hackazon_asm241” and search for “Enforce Cookie”</li>
 <li>Select the entry for JSESSIONID and Accept the Suggection</li>
 </ol>
@@ -380,7 +390,7 @@
 <div class="line"><br /></div>
 </div>
 <ol class="arabic simple" start="6">
-<li>Go to Application Security &gt; Headers &gt; Cookie List and examine the new entries for Enforced Cookies</li>
+<li>Go to Security &gt; Application Security &gt; Headers &gt; Cookie List and examine the new entries for Enforced Cookies</li>
 </ol>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -406,7 +416,7 @@
 </div>
 <ol class="arabic simple" start="5">
 <li>Turn intercept off and go back to BIG-IP tab</li>
-<li>Go to Security &gt; Event Logs and examine the illegal request</li>
+<li>Go to Security &gt; Event Logs &gt; Application &gt; Requests and examine the illegal request</li>
 </ol>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -416,7 +426,7 @@
 <div class="line"><br /></div>
 </div>
 <ol class="arabic simple" start="7">
-<li>Turn intercept back to off and close Burp Suite. Then return to your firefox settings and change the proxy settings back to “No Proxy”</li>
+<li>Close Burp Suite. Then return to your firefox settings and change the proxy settings back to “No Proxy”</li>
 </ol>
 </div>
 </div>

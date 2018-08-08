@@ -215,7 +215,7 @@
 <li><a class="reference internal" href="#">Lab 5: HTTP Redirect Protection</a><ul>
 <li><a class="reference internal" href="#connect-to-the-lab-environment">Connect to the lab environment</a></li>
 <li><a class="reference internal" href="#test-http-redirection-behavior">Test HTTP Redirection Behavior</a></li>
-<li><a class="reference internal" href="#edit-the-security-policy">Edit the Security Policy</a></li>
+<li><a class="reference internal" href="#edit-the-hackazon-asm241-security-policy">Edit the hackazon_asm241 Security Policy</a></li>
 <li><a class="reference internal" href="#test-http-redirection-protection">Test HTTP Redirection Protection</a></li>
 </ul>
 </li>
@@ -267,8 +267,8 @@
 <h2>Test HTTP Redirection Behavior<a class="headerlink" href="#test-http-redirection-behavior" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>Browse to <a class="reference external" href="http://hackazon.local/user/login">http://hackazon.local/user/login</a></li>
-<li>Login as ‘f5student’ with the proper password</li>
-<li>You are logged in normally and view your account.</li>
+<li>Login as ‘f5student’ with the proper password using the “Sign-in” link in the top right.</li>
+<li>You are logged in normally and now see your account.</li>
 <li>Click the “Logout” button in the top right.</li>
 <li>Browse to <a class="reference external" href="http://hackazon.local/user/login?return_url=http://webgoat.local/WebGoat/login">http://hackazon.local/user/login?return_url=http://webgoat.local/WebGoat/login</a> and login again as ‘f5student’ with the proper password.</li>
 </ol>
@@ -285,22 +285,17 @@ This is commonly used in phishing attacks to get the user to visit malicious sit
 <div class="line"><br /></div>
 </div>
 </div>
-<div class="section" id="edit-the-security-policy">
-<h2>Edit the Security Policy<a class="headerlink" href="#edit-the-security-policy" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="edit-the-hackazon-asm241-security-policy">
+<h2>Edit the hackazon_asm241 Security Policy<a class="headerlink" href="#edit-the-hackazon-asm241-security-policy" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>On the BIG-IP TMUI Go to Security &gt; Application Security &gt; Headers &gt; Redirection Protection</li>
-<li>Verify that the “Current edited security policy” says “hackazon (blocking)”</li>
+<li>On the BIG-IP TMUI Go to Security &gt; Application Security &gt; Headers &gt; Redirection Protection.</li>
+<li>Verify that the “Current edited security policy” says “hackazon_asm241 (blocking)”.</li>
+<li>The policy currently allows for redirection to any domain.</li>
 </ol>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <a class="reference internal image-reference" href="../../_images/httpredir.png"><img alt="../../_images/httpredir.png" src="../../_images/httpredir.png" style="width: 600px;" /></a>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<ol class="arabic simple" start="3">
-<li>The policy currently allows for redirection to any domain.</li>
-</ol>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -353,7 +348,7 @@ This is commonly used in phishing attacks to get the user to visit malicious sit
 <div class="line"><br /></div>
 </div>
 <ol class="arabic simple" start="4">
-<li>On the BIG-IP, go to Security, and click on Event Logs.</li>
+<li>On the BIG-IP, go to Security &gt; Event Logs &gt; Application &gt; Requests.</li>
 <li>You should see the HTTP redirect event, “Illegal redirection attempt”, blocked and logged.</li>
 </ol>
 <div class="line-block">

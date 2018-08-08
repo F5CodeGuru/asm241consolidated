@@ -16,9 +16,9 @@ Test HTTP Redirection Behavior
 
 #. Browse to http://hackazon.local/user/login
 
-#. Login as ‘f5student’ with the proper password
+#. Login as ‘f5student’ with the proper password using the "Sign-in" link in the top right.
 
-#. You are logged in normally and view your account.
+#. You are logged in normally and now see your account.
 
 #. Click the “Logout” button in the top right.
 
@@ -34,21 +34,19 @@ Test HTTP Redirection Behavior
 |
 
 
-Edit the Security Policy
-~~~~~~~~~~~~~~~~~~~~~~~~
+Edit the hackazon_asm241 Security Policy
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-1. On the BIG-IP TMUI Go to Security > Application Security > Headers > Redirection Protection
+1. On the BIG-IP TMUI Go to Security > Application Security > Headers > Redirection Protection.
 
-2. Verify that the “Current edited security policy” says “hackazon (blocking)”
+2. Verify that the “Current edited security policy” says “hackazon_asm241 (blocking)”.
+
+3. The policy currently allows for redirection to any domain.
 
 |
 
 .. image:: images/httpredir.png
         :width: 600px
-
-|
-
-3. The policy currently allows for redirection to any domain.
 
 |
 
@@ -96,7 +94,7 @@ Test HTTP Redirection Protection
 
 |
 
-4. On the BIG-IP, go to Security, and click on Event Logs.
+4. On the BIG-IP, go to Security > Event Logs > Application > Requests.
 
 5. You should see the HTTP redirect event, “Illegal redirection attempt”, blocked and logged.
 
