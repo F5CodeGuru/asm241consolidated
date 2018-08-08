@@ -53,7 +53,13 @@ Edit the Security Policy
 
 2. Click the Create button on the right side.
 
-3. Type “png” in the File Type (Explicit only) box and click Create
+3. Type “png” in the File Type (Explicit only) box and click Create.
+
+|
+
+.. note::
+        Disallowed file types are case sensitive. png and PNG would both need to be entered to cover upper-case and lower-case.
+ 
 
 |
 
