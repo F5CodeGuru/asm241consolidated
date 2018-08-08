@@ -260,8 +260,8 @@
 <div class="section" id="connect-to-the-lab-environment">
 <h2>Connect to the lab environment<a class="headerlink" href="#connect-to-the-lab-environment" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>From the jumphost, launch Chrome, click the BIG-IP bookmark and login to TMUI. admin/password</li>
-<li>Open a second tab for use with the WebGoat App</li>
+<li>From the jumphost, launch Chrome, click the BIG-IP bookmark and login to TMUI using admin/password.</li>
+<li>Open a second tab in Chrome for use with the WebGoat App.</li>
 </ol>
 </div>
 <div class="section" id="take-a-look-at-the-webgoat-object">
@@ -289,9 +289,9 @@
 <div class="section" id="edit-the-security-policy">
 <h2>Edit the Security Policy<a class="headerlink" href="#edit-the-security-policy" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>On the BIG-IP TMUI, go to Local traffic &gt; Virtual Servers &gt; asm_vs</li>
-<li>Click the Security tab and make sure “Application Security Policy” is set to “asm241”</li>
-<li>Make sure the logging Profile is set to “Log Illegal Requests”</li>
+<li>On the BIG-IP TMUI, go to Local traffic &gt; Virtual Servers &gt; asm_vs.</li>
+<li>Click the Security tab and make sure “Application Security Policy” is set to “ASM241”.</li>
+<li>Make sure the Log Profile is set to “Log Illegal Requests”. The resulting config should look like the below. Click “Update” if any changes were made.</li>
 </ol>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -301,10 +301,9 @@
 <div class="line"><br /></div>
 </div>
 <ol class="arabic simple">
-<li>Go to Security &gt; Application Security &gt; File Types &gt; Disallowed File Types</li>
+<li>Go to Security &gt; Application Security &gt; File Types &gt; Disallowed File Types. Ensure the “ASM241” policy is the “Current edited security policy”</li>
 <li>Click the Create button on the right side.</li>
 <li>Type “png” in the File Type (Explicit only) box and click Create</li>
-<li>Click Apply Policy in the top right, then click OK.</li>
 </ol>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -313,11 +312,17 @@
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
+<ol class="arabic simple" start="4">
+<li>Click Apply Policy in the top right, then click OK.</li>
+</ol>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 </div>
 <div class="section" id="test-file-type-protection">
 <h2>Test File Type Protection<a class="headerlink" href="#test-file-type-protection" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Browse again to <a class="reference external" href="http://10.1.10.145/WebGoat/login">http://10.1.10.145/WebGoat/login</a> and login as “f5student” or use the bookmark.</li>
+<li>Launch firefox (to avoid any webcaching done by Chrome) and Browse to <a class="reference external" href="http://10.1.10.145/WebGoat/login">http://10.1.10.145/WebGoat/login</a> and login as “f5student” or use the bookmark.</li>
 <li>On the left menu click Vulnerable Components – A9, then click Vulnerable Components.</li>
 <li>The Software Supply Chain .png graphic does not load, because it is blocked by the ASM Disallowed File Types setting blocking .png files.</li>
 </ol>
@@ -328,7 +333,17 @@
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<ol class="arabic simple">
+<ol class="arabic simple" start="4">
+<li>Go to Security &gt; Event Logs &gt; Application &gt; Requests and examine the logs, you should see an illegal request similar to the below.</li>
+</ol>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/disallowedFileType.png"><img alt="../../_images/disallowedFileType.png" src="../../_images/disallowedFileType.png" style="width: 600px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ol class="arabic simple" start="5">
 <li>What other applications are there for this type of policy?</li>
 </ol>
 </div>

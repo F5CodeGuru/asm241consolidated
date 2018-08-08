@@ -7,9 +7,9 @@ In this lab you will configure a a security policy in ASM to block vulnerable co
 Connect to the lab environment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#. From the jumphost, launch Chrome, click the BIG-IP bookmark and login to TMUI. admin/password
+#. From the jumphost, launch Chrome, click the BIG-IP bookmark and login to TMUI using admin/password.
 
-#. Open a second tab for use with the WebGoat App
+#. Open a second tab in Chrome for use with the WebGoat App.
 
 
 Take a look at the WebGoat object
@@ -36,11 +36,11 @@ Take a look at the WebGoat object
 Edit the Security Policy
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-#. On the BIG-IP TMUI, go to Local traffic > Virtual Servers > asm_vs
+#. On the BIG-IP TMUI, go to Local traffic > Virtual Servers > asm_vs.
 
-#. Click the Security tab and make sure "Application Security Policy" is set to "asm241"
+#. Click the Security tab and make sure "Application Security Policy" is set to "ASM241".
 
-#. Make sure the logging Profile is set to "Log Illegal Requests"
+#. Make sure the Log Profile is set to "Log Illegal Requests". The resulting config should look like the below. Click "Update" if any changes were made.
 
 |
 
@@ -49,13 +49,11 @@ Edit the Security Policy
 
 |
 
-#. Go to Security > Application Security > File Types > Disallowed File Types
+1. Go to Security > Application Security > File Types > Disallowed File Types. Ensure the "ASM241" policy is the "Current edited security policy"
 
-#. Click the Create button on the right side.
+2. Click the Create button on the right side.
 
-#. Type “png” in the File Type (Explicit only) box and click Create
-
-#. Click Apply Policy in the top right, then click OK.
+3. Type “png” in the File Type (Explicit only) box and click Create
 
 |
 
@@ -64,14 +62,18 @@ Edit the Security Policy
 
 |
 
+4. Click Apply Policy in the top right, then click OK.
+
+|
+
 Test File Type Protection
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#. Browse again to http://10.1.10.145/WebGoat/login and login as “f5student” or use the bookmark.
+1. Launch firefox (to avoid any webcaching done by Chrome) and Browse to http://10.1.10.145/WebGoat/login and login as “f5student” or use the bookmark.
 
-#. On the left menu click Vulnerable Components – A9, then click Vulnerable Components.
+2. On the left menu click Vulnerable Components – A9, then click Vulnerable Components.
 
-#. The Software Supply Chain .png graphic does not load, because it is blocked by the ASM Disallowed File Types setting blocking .png files.
+3. The Software Supply Chain .png graphic does not load, because it is blocked by the ASM Disallowed File Types setting blocking .png files.
 
 |
 
@@ -80,4 +82,13 @@ Test File Type Protection
 
 |
 
-#. What other applications are there for this type of policy?
+4. Go to Security > Event Logs > Application > Requests and examine the logs, you should see an illegal request similar to the below.
+
+|
+
+.. image:: images/disallowedFileType.png
+        :width: 600px
+
+|
+
+5. What other applications are there for this type of policy?
