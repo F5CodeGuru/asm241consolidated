@@ -18,7 +18,7 @@ Connect to the lab environment
 
 2. From the jumphost, launch firefox, which we will use to access WebGoat.
 
-3. In firefox go to the right-hand side icon and select "Preferences".  Then select Advanced and Settings under connection.
+3. In firefox go to the right-hand side icon and select "Preferences". 
 
 |
 
@@ -27,7 +27,16 @@ Connect to the lab environment
 
 |
 
-4. Set your proxy settings to manual as shown in the screenshot.
+4. Then select Advanced > Network, under “Connection” click “Settings”.
+
+|
+
+.. image:: images/ffAdvanced.png
+        :width: 600px
+
+|
+
+5. Set your proxy settings to manual as shown in the screenshot below, click “Ok”.
 
 |
 
@@ -36,7 +45,7 @@ Connect to the lab environment
 
 |
 
-5. From the jumphost desktop, launch Burp Suite. 
+5. From the jumphost desktop, launch Burp Suite using the icon on the desktop. If you are prompted to update Burp, ignore this pop-up by clicking “Close”.
 
   - Select Temporary Projects and click Next.
   - Leave Defaults checked and click "Start Burp"
@@ -52,14 +61,14 @@ Connect to the lab environment
 An XXE Vulnerability
 ~~~~~~~~~~~~~~~~~~~~
 
-1. Login to WebGoat using firefox f5student/f5DEMOs4u!
+1. Login to WebGoat using firefox f5student/password.
 
-2. Select "Injection Flaws" and then select "XXE"
+2. Select "Injection Flaws" and then select "XXE".
 
 3. If XML or XML External Entities are new to you, then please start from the begging and read through parts 1 and 2 in the WebGoat Lesson.
 
 4. Under part 3, enter a comment to familiarize yourself with the application.
-*The to complete the lesson, you will need to figure out how the list the contents of the root directory utilizing this submission form.*
+*To complete the lesson, you will need to figure out how to list the contents of the root directory utilizing this submission form.*
 
 5. Enter the following statment in the field and click submit. What does this tell us?
 
@@ -80,7 +89,7 @@ Manipulating the Request
 
 |
 
-2. Submit another comment using something simple like "test" or "abc"
+2. Submit another comment using something simple like "test" or "abc".
 
 3. Burp should come back to the front, but if not switch to Burp to examine the request.
 
@@ -91,7 +100,7 @@ Manipulating the Request
 
 |
 
-4. Edit the request with the following XML
+4. Edit the request with the following XML.
 
 |
 
@@ -123,11 +132,11 @@ Manipulating the Request
 Mitigate an XXE attack
 ~~~~~~~~~~~~~~~~~~~~~~
 
-1. Login to the BIG-IP as before with admin/password
+1. Login to the BIG-IP as before with admin/password.
 
-2. Browse to Local Traffic > Virtual Servers > asm_vs and select "Policies" under the security tab
+2. Browse to Local Traffic > Virtual Servers > asm_vs and select "Policies" under the security tab.
 
-3. Make sure "ASM241" is selected as your Application Security Policy and that you have "Log Illegal Requests" as your Log Profile
+3. Make sure "ASM241" is selected as your Application Security Policy and that you have "Log Illegal Requests" as your Log Profile. Click "Update" if any changes are made.
 
 |
 
@@ -138,9 +147,9 @@ Mitigate an XXE attack
 
 4. Go to Security > Application Security > Attack Signatures and make sure your current edited policy is ASM241.
 
-5. Under Policy Attack Signatures, select "Signature name contains" and enter "External" before clicking Go
+5. Under Policy Attack Signatures, select "Signature name contains" and enter "External" before clicking Go.
 
-6. Select the following signatures and click enforce.
+6. Select the following signatures and click enforce. Click "Apply Policy".
 
 |
 
@@ -149,13 +158,40 @@ Mitigate an XXE attack
 
 |     
 
-7. Using Burp suite and firefox, turn intercept back on and run the same test, manipulating the request. What happens this time?
+7. Using Burp suite and firefox, turn intercept back on we will run the same test, manipulating the request. 
+   
+8. Submit another comment that is different from the previous, something simple like “test1” or “abc1”.
+ 
+9. Burp should come back to the front, but if not switch to Burp to examine the request.
 
+10. Edit the request with the following XML.
+
+|
+
+.. code-block:: xml
+
+        <?xml version="1.0" encoding="UTF-8" ?>
+        <!DOCTYPE foo [<!ENTITY xxe SYSTEM "file:///" >]>
+        <comment>
+        <text>abc1&xxe;</text>
+        </comment>
+
+|
+
+
+.. image:: images/burpXxe.png
+        :width: 600px
+
+|
+
+11. Forward the request. What happens this time?
+
+|
 
 Check your logs
 ~~~~~~~~~~~~~~~
 
-1. On BIG-IP go to Application Security > Event Logs
+1. On BIG-IP go to Security > Application Security > Event Logs > Application > Requests.
 
 2. You should see an entry that trigger the now enforced Attack Signatures.
 
@@ -169,7 +205,7 @@ Check your logs
      
 3. What is another way that ASM could be used to mitigate XXE injection?
 
-*Hint: Take a look at the Application Security > Content Profiles > XML Profiles*
-*The Default profile is applied to all http and https requests*
+*Hint: Take a look at the Application Security > Content Profiles > XML Profiles.*
+*The Default profile is applied to all http and https requests.*
 
-4. Turn intercept back to off and close Burp Suite.  Then return to your firefox settings and change the proxy settings back to "No Proxy"
+4. Turn intercept back to off and close Burp Suite.  Then return to your firefox settings and change the proxy settings back to "No Proxy".

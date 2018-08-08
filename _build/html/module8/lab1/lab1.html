@@ -276,7 +276,7 @@ It may be easier to use two browsers instead of two tabs.</p>
 </div>
 <ol class="arabic simple" start="2">
 <li>From the jumphost, launch firefox, which we will use to access WebGoat.</li>
-<li>In firefox go to the right-hand side icon and select “Preferences”.  Then select Advanced and Settings under connection.</li>
+<li>In firefox go to the right-hand side icon and select “Preferences”.</li>
 </ol>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -286,7 +286,17 @@ It may be easier to use two browsers instead of two tabs.</p>
 <div class="line"><br /></div>
 </div>
 <ol class="arabic simple" start="4">
-<li>Set your proxy settings to manual as shown in the screenshot.</li>
+<li>Then select Advanced &gt; Network, under “Connection” click “Settings”.</li>
+</ol>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/ffAdvanced1.png"><img alt="../../_images/ffAdvanced1.png" src="../../_images/ffAdvanced1.png" style="width: 600px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ol class="arabic simple" start="5">
+<li>Set your proxy settings to manual as shown in the screenshot below, click “Ok”.</li>
 </ol>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -296,7 +306,7 @@ It may be easier to use two browsers instead of two tabs.</p>
 <div class="line"><br /></div>
 </div>
 <ol class="arabic simple" start="5">
-<li>From the jumphost desktop, launch Burp Suite.</li>
+<li>From the jumphost desktop, launch Burp Suite using the icon on the desktop. If you are prompted to update Burp, ignore this pop-up by clicking “Close”.</li>
 </ol>
 <blockquote>
 <div><ul class="simple">
@@ -316,12 +326,12 @@ It may be easier to use two browsers instead of two tabs.</p>
 <div class="section" id="an-xxe-vulnerability">
 <h2>An XXE Vulnerability<a class="headerlink" href="#an-xxe-vulnerability" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Login to WebGoat using firefox f5student/f5DEMOs4u!</li>
-<li>Select “Injection Flaws” and then select “XXE”</li>
+<li>Login to WebGoat using firefox f5student/password.</li>
+<li>Select “Injection Flaws” and then select “XXE”.</li>
 <li>If XML or XML External Entities are new to you, then please start from the begging and read through parts 1 and 2 in the WebGoat Lesson.</li>
 </ol>
 <p>4. Under part 3, enter a comment to familiarize yourself with the application.
-<em>The to complete the lesson, you will need to figure out how the list the contents of the root directory utilizing this submission form.</em></p>
+<em>To complete the lesson, you will need to figure out how to list the contents of the root directory utilizing this submission form.</em></p>
 <ol class="arabic simple" start="5">
 <li>Enter the following statment in the field and click submit. What does this tell us?</li>
 </ol>
@@ -346,7 +356,7 @@ It may be easier to use two browsers instead of two tabs.</p>
 <div class="line"><br /></div>
 </div>
 <ol class="arabic simple" start="2">
-<li>Submit another comment using something simple like “test” or “abc”</li>
+<li>Submit another comment using something simple like “test” or “abc”.</li>
 <li>Burp should come back to the front, but if not switch to Burp to examine the request.</li>
 </ol>
 <div class="line-block">
@@ -357,7 +367,7 @@ It may be easier to use two browsers instead of two tabs.</p>
 <div class="line"><br /></div>
 </div>
 <ol class="arabic simple" start="4">
-<li>Edit the request with the following XML</li>
+<li>Edit the request with the following XML.</li>
 </ol>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -388,9 +398,9 @@ It may be easier to use two browsers instead of two tabs.</p>
 <div class="section" id="mitigate-an-xxe-attack">
 <h2>Mitigate an XXE attack<a class="headerlink" href="#mitigate-an-xxe-attack" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Login to the BIG-IP as before with admin/password</li>
-<li>Browse to Local Traffic &gt; Virtual Servers &gt; asm_vs and select “Policies” under the security tab</li>
-<li>Make sure “ASM241” is selected as your Application Security Policy and that you have “Log Illegal Requests” as your Log Profile</li>
+<li>Login to the BIG-IP as before with admin/password.</li>
+<li>Browse to Local Traffic &gt; Virtual Servers &gt; asm_vs and select “Policies” under the security tab.</li>
+<li>Make sure “ASM241” is selected as your Application Security Policy and that you have “Log Illegal Requests” as your Log Profile. Click “Update” if any changes are made.</li>
 </ol>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -401,8 +411,8 @@ It may be easier to use two browsers instead of two tabs.</p>
 </div>
 <ol class="arabic simple" start="4">
 <li>Go to Security &gt; Application Security &gt; Attack Signatures and make sure your current edited policy is ASM241.</li>
-<li>Under Policy Attack Signatures, select “Signature name contains” and enter “External” before clicking Go</li>
-<li>Select the following signatures and click enforce.</li>
+<li>Under Policy Attack Signatures, select “Signature name contains” and enter “External” before clicking Go.</li>
+<li>Select the following signatures and click enforce. Click “Apply Policy”.</li>
 </ol>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -412,13 +422,39 @@ It may be easier to use two browsers instead of two tabs.</p>
 <div class="line"><br /></div>
 </div>
 <ol class="arabic simple" start="7">
-<li>Using Burp suite and firefox, turn intercept back on and run the same test, manipulating the request. What happens this time?</li>
+<li>Using Burp suite and firefox, turn intercept back on we will run the same test, manipulating the request.</li>
+<li>Submit another comment that is different from the previous, something simple like “test1” or “abc1”.</li>
+<li>Burp should come back to the front, but if not switch to Burp to examine the request.</li>
+<li>Edit the request with the following XML.</li>
 </ol>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span>
+<span class="cp">&lt;!DOCTYPE foo [&lt;!ENTITY xxe SYSTEM &quot;file:///&quot; &gt;</span>]&gt;
+<span class="nt">&lt;comment&gt;</span>
+<span class="nt">&lt;text&gt;</span>abc1<span class="ni">&amp;xxe;</span><span class="nt">&lt;/text&gt;</span>
+<span class="nt">&lt;/comment&gt;</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="../../_images/burpXxe.png"><img alt="../../_images/burpXxe.png" src="../../_images/burpXxe.png" style="width: 600px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ol class="arabic simple" start="11">
+<li>Forward the request. What happens this time?</li>
+</ol>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 </div>
 <div class="section" id="check-your-logs">
 <h2>Check your logs<a class="headerlink" href="#check-your-logs" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>On BIG-IP go to Application Security &gt; Event Logs</li>
+<li>On BIG-IP go to Security &gt; Application Security &gt; Event Logs &gt; Application &gt; Requests.</li>
 <li>You should see an entry that trigger the now enforced Attack Signatures.</li>
 </ol>
 <div class="line-block">
@@ -431,10 +467,10 @@ It may be easier to use two browsers instead of two tabs.</p>
 <ol class="arabic simple" start="3">
 <li>What is another way that ASM could be used to mitigate XXE injection?</li>
 </ol>
-<p><em>Hint: Take a look at the Application Security &gt; Content Profiles &gt; XML Profiles</em>
-<em>The Default profile is applied to all http and https requests</em></p>
+<p><em>Hint: Take a look at the Application Security &gt; Content Profiles &gt; XML Profiles.</em>
+<em>The Default profile is applied to all http and https requests.</em></p>
 <ol class="arabic simple" start="4">
-<li>Turn intercept back to off and close Burp Suite.  Then return to your firefox settings and change the proxy settings back to “No Proxy”</li>
+<li>Turn intercept back to off and close Burp Suite.  Then return to your firefox settings and change the proxy settings back to “No Proxy”.</li>
 </ol>
 </div>
 </div>

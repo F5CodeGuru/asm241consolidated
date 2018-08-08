@@ -21,7 +21,7 @@ Connect to the Lab Environment
 
 |
 
-4. Then select Advanced > Network,  under "Connection" select "Settings".
+4. Then select Advanced > Network,  under "Connection" click "Settings".
 
 |
 
@@ -30,7 +30,7 @@ Connect to the Lab Environment
 
 |
 
-5. Set your proxy settings to manual as shown in the screenshot, click "Ok".
+5. Set your proxy settings to manual as shown in the screenshot below, click "Ok".
 
 |
 
