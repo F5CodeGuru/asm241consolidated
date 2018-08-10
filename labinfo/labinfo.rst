@@ -42,10 +42,7 @@ BIG-IP (bigip01):
 Lab Topology
 ~~~~~~~~~~~~
 
-The network topology implemented for this lab is very simple, since the
-focus of the lab is Control Plane programmability rather than Data Plane
-traffic flow we can keep the data plane fairly simple. The following
-components have been included in your lab environment:
+#####Need topology description#####
 
 The following table lists VLANS, IP Addresses and Credentials for all
 components:
@@ -65,22 +62,22 @@ components:
      - 10.1.1.51
      - 10.1.10.51
      - N/A
-     - https-``f5student:f5DEMOs4u!``
+     - https-``f5student:password``
    * - Bigip (bigip01)
      - 10.1.1.245
      - 10.1.10.245
      - 10.1.20.245
-     - https - ``admin:f5DEMOs4u!`` ssh - ``f5student:f5DEMOs4u!``
+     - https - ``admin:password`` ssh - ``f5student:password``
    * - Linux Server (server01)
      - 10.1.1.252
      - N/A
      - 10.1.20.252
-     - ssh - ``f5student:f5DEMOs4u!``
+     - ssh - ``f5student:password``
    * - Kali (Kali-BaDOS)
      - 10.1.1.245
      - 10.1.10.100 / 10.1.10.200
      - N/A
-     - ssh - ``f5student:f5DEMOs4u!``
+     - ssh - ``f5student:password``
    * - Linux Server (LAMPv4)
      - 10.1.1.250
      - N/A
